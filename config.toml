@@ -1,0 +1,45 @@
+base_url = "https://kunzaatko.github.io"
+
+title = "Random Sampler"
+author = "Martin Kunz"
+description = "Personal blog of Martin Kunz" # TODO: Update... Appears in feeds <16-03-24> 
+
+default_language = "en"
+
+output_dir = "public"
+compile_sass = true
+generate_feed = true
+
+# TODO: Should be set based on the categories that I want to write about <16-03-24> 
+# The taxonomies to be rendered for the site and their configuration of the default languages
+# Example:
+#     taxonomies = [
+#       {name = "tags", feed = true}, # each tag will have its own feed
+#       {name = "tags"}, # you can have taxonomies with the same name in multiple languages
+#       {name = "categories", paginate_by = 5},  # 5 items per page for a term
+#       {name = "authors"}, # Basic definition: no feed or pagination
+#     ]
+#
+taxonomies = []
+
+build_search_index = true
+
+[markdown]
+highlight_code = true
+highlight_theme = "gruvbox-dark" # TODO: 
+render_emoji = true
+smart_punctuation = true
+
+[search]
+include_title = true
+include_description = true
+include_path = true
+include_content = true
+
+# TODO: https://www.getzola.org/documentation/getting-started/configuration/ <16-03-24> 
+[translations]
+
+[languages]
+
+
+[extra]
