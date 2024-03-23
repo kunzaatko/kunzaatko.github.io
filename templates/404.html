@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block top %}
+<picture>
+	<source srcset="{{ get_url(path='resources/404.png') }}" media="(prefers-reduced-motion: reduce)">
+	</source>
+	<img id="not-found" class="pixels transparent no-hover" srcset="{{ get_url(path='resources/404.gif') }}">
+</picture>
+
+<header>Page Not Found</header>
+
+<p>The requested page could not be found. If you feel this is not normal, then you can create an issue on the issue
+	tracker.</p>
+
+<p class="dialog-buttons">
+	<a onclick="window.history.go(-1)" class="inline-button">Go Back</a>
+	<a href="{{ config.extra.issues_url }}">File an Issue</a>
+	<!-- TODO: This button should look differently <18-03-24> -->
+	<!-- TODO: Go to top with animation that turns an arrow up <18-03-24> -->
+</p>
+{% endblock content %}

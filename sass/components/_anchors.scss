@@ -1,0 +1,64 @@
+// TODO: adjust the animation. It should end at some point.
+
+// Make focused anchor not get covered by nav,
+// and flash it with primary color when jumping to it
+:target:not(#main) {
+    scroll-margin-top: 15vh;
+    animation: var(--transition-long) 1s highlight-in-out;
+    color: var(--primary-color);
+    text-shadow: var(--primary-color-alpha) 0 0 4px, var(--primary-color) 0 0 12px;
+
+    @keyframes highlight-in-out {
+        50% {
+            letter-spacing: 0.125rem;
+        }
+    }
+
+    @media (prefers-reduced-motion) {
+        animation: none;
+    }
+}
+
+.link-page::after {
+    content: " →";
+    font-family: var(--font-icons);
+}
+
+.link-site::after {
+    content: " ↗";
+    font-family: var(--font-icons);
+}
+
+@mixin base-anchor {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+a {
+    @include base-anchor;
+
+    &:hover {
+        text-decoration: underline wavy;
+        -webkit-text-decoration: underline wavy;
+    }
+}
+
+@mixin background-anchor {
+    @include base-anchor;
+    text-decoration: none;
+
+    &:hover {
+        background-color: var(--primary-color-alpha);
+        border-radius: var(--rounded-corner-small);
+        padding: 0.2rem;
+        display: inline-block;
+    }
+}
+
+.social-links a {
+    @include background-anchor;
+}
+
+a.source-link {
+    @include background-anchor;
+}

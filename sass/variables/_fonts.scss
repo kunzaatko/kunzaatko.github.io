@@ -1,0 +1,26 @@
+@import "CMU_bright";
+@import "CMU_concrete";
+@import "CMU_sans";
+@import "CMU_serif";
+@import "CMU_typewriter";
+
+@font-face {
+    font-family: "Font Awesome 6";
+    src: url('../fa_icons/fa-solid-900.ttf');
+}
+
+.serif {
+    font-family: var(--font-serif);
+}
+
+.serif>* {
+    font-family: inherit;
+}
+
+.sans-serif {
+    font-family: var(--font-sans-serif);
+}
+
+.sans-serif>* {
+    font-family: inherit;
+}

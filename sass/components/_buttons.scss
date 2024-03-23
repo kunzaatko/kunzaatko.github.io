@@ -1,0 +1,41 @@
+.dialog-buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	justify-content: space-between;
+	margin-top: 6rem;
+}
+
+.inline-button {
+	background-color: var(--fg-muted-1);
+	border-radius: var(--rounded-corner);
+	box-shadow: var(--edge-highlight);
+	color: var(--fg-color);
+	display: inline-block;
+	font-size: 0.9rem;
+	padding: 0.5rem 1rem;
+	text-decoration: none;
+	transition: var(--transition);
+
+	&:hover {
+		background-color: var(--fg-muted-2);
+		text-decoration: none;
+	}
+
+	&:active {
+		transform: scale(var(--active));
+	}
+
+	&.colored {
+		-webkit-backdrop-filter: unset;
+		backdrop-filter: unset;
+		background-color: transparent;
+		box-shadow: none;
+		color: var(--primary-color);
+
+		&:hover {
+			background-color: var(--primary-color-alpha);
+			box-shadow: var(--edge-highlight);
+		}
+	}
+}

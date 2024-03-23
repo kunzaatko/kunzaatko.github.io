@@ -1,0 +1,132 @@
+@use "variables/variables" as var;
+
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 16px;
+	scroll-behavior: smooth;
+	scrollbar-color: var(--primary-color) transparent;
+	accent-color: var(--primary-color);
+	overflow-wrap: break-word;
+}
+
+// Smaller font size on mobile
+// @media only screen and (max-width: 480px) {
+//   html {
+//     font-size: 14px;
+//   }
+// }
+
+html,
+body {
+	font-family: var(--font-serif);
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	// font-family: var(--font-system);
+	line-height: 1.5;
+	color: var(--fg-color);
+	background: var(--bg-color);
+	// Put footer at the bottom for short pages, such as the 404
+	display: grid;
+	min-height: 100vh;
+	grid-template-rows: auto minmax(auto, 1fr) auto; // Header, stuff, footer
+}
+
+p {
+	text-align: justify;
+	font-size: 1.1rem;
+}
+
+// Style text selection to use primary color
+::selection {
+	color: var(--fg-color);
+	background-color: var(--primary-color);
+}
+
+// LAYOUT
+@mixin main-content {
+	margin: auto;
+	width: var.$width;
+}
+
+main {
+	@include main-content;
+}
+
+#main {
+	@include main-content;
+}
+
+small {
+	color: var(--fg-muted-5);
+	font-size: 0.8rem;
+}
+
+dl {
+	padding: 0;
+
+	dt {
+		padding: 0;
+		margin-top: 1rem;
+		font-size: 1rem;
+		font-weight: bold;
+	}
+
+	dd {
+		padding: 0;
+		margin-bottom: 1rem;
+	}
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid var(--fg-muted-2);
+	margin: 2rem auto;
+	width: 100%;
+}
+
+blockquote {
+	border-left: 0.25rem solid var(--primary-color);
+	border-radius: 0.2rem;
+	color: var(--fg-muted-5);
+	margin: 0;
+	padding: 0 0.75rem;
+
+	& & {
+		border-radius: 0;
+	}
+}
+
+abbr {
+	cursor: help;
+	text-decoration: underline;
+	-webkit-text-decoration: underline;
+}
+
+aside {
+	background-color: var(--primary-color-alpha);
+	border-radius: var(--rounded-corner);
+	box-shadow: var(--edge-highlight);
+	float: right;
+	margin-inline-start: 1rem;
+	padding: 1rem;
+	width: 30%;
+
+	@media only screen and (max-width: 720px) {
+		& {
+			width: 100%;
+			float: none;
+			margin-inline-start: 0;
+		}
+	}
+}
+
+// figure:has(figcaption)
+// description:has(toc)

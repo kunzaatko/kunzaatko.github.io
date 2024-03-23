@@ -1,0 +1,29 @@
+<header id="site-nav">
+	<nav>
+		<a href="#main" id="main-content" tabindex="0">Skip to main content</a>
+		<!-- TODO: What does this do? <18-03-24> -->
+		<ul>
+			<li id="home">
+				<a href="{{ get_url(path='') }}">
+					<i class="fa-solid fa-home"></i>
+					{{ config.title }}</a>
+			</li>
+			{% for link in config.extra.nav.links %}
+			<li>
+				<a href="{{ link.url | safe | replace(from='$BASE_URL', to=get_url(path='')) | safe }}">{{ link.icon
+					| safe
+					}} {{ link.name
+					}}</a>
+			</li>
+			{% endfor %}
+			{% if config.extra.nav.show_feed %}
+			<li id="feed">
+				<a href="{{ get_url(path='') }}/{{ config.feed_filename }}">
+					<i class="fa-solid fa-rss"></i>
+					<span>Feed</span> <!-- TODO: Why is this here? <18-03-24> -->
+				</a>
+			</li> <!-- TODO: Add theme change icon <18-03-24> -->
+			{% endif %}
+		</ul>
+	</nav>
+</header>

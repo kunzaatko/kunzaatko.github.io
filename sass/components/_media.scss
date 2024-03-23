@@ -1,0 +1,42 @@
+img,
+video {
+	border-radius: var(--rounded-corner);
+	box-shadow: var(--shadow);
+	display: block;
+	margin: 1rem auto;
+	max-width: 100%;
+
+	&.full {
+		width: 100%;
+	}
+
+	&.pixels {
+		image-rendering: pixelated;
+	}
+
+	&.transparent {
+		border-radius: 0;
+		box-shadow: none;
+	}
+}
+
+img {
+	transition: var(--transition-longer);
+
+	&:not(.no-hover) {
+		cursor: zoom-in;
+	}
+
+	&:not(.no-hover):hover {
+		border-radius: 0;
+		box-shadow: var(--shadow-raised);
+		transform: scale(1.1);
+	}
+}
+
+figcaption {
+	display: block;
+	text-align: center;
+	color: var(--fg-muted-4);
+	font-size: 0.8rem;
+}

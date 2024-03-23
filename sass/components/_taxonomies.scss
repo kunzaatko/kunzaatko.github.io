@@ -1,0 +1,58 @@
+%taxonomy-list {
+	list-style: none;
+	padding: 0;
+	display: inline-block;
+
+	li {
+		display: inline-block;
+		margin: 0 0.25rem 0.5rem 0;
+		transition: var(--transition);
+
+		&:active {
+			transform: scale(var(--active));
+		}
+	}
+
+}
+
+@mixin taxononomy-item($prefix) {
+	font-size: 0.8rem;
+	font-family: var(--font-sans-serif);
+	background-color: var(--fg-muted-1);
+	border-radius: 999px;
+	box-shadow: var(--edge-highlight);
+	color: var(--fg-color);
+	padding: 0.25rem 0.75rem;
+	text-decoration: none;
+	transition: var(--transition);
+
+	&:hover {
+		color: var(--primary-color);
+		background-color: var(--primary-color-alpha);
+		text-decoration: none;
+	}
+
+	&::before {
+		content: $prefix;
+		font-family: var(--font-icons);
+	}
+}
+
+.tags {
+	@extend %taxonomy-list;
+
+	.tag {
+		@include taxononomy-item(' ');
+	}
+}
+
+.categories {
+	@extend %taxonomy-list;
+
+	.category {
+		@include taxononomy-item(' ');
+	}
+}
+
+// TODO: Show same date in showcase as in tags
+// TODO: Smaller in the showcase card

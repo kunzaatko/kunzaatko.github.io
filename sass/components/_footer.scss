@@ -1,0 +1,16 @@
+#site-footer {
+	padding: 3rem 0 3rem;
+	margin-top: 4rem;
+
+	p {
+		text-align: center;
+		line-height: 0;
+		font-size: 1rem;
+	}
+
+	details {
+		all: unset;
+		color: var(--fg-muted-5);
+		font-size: 0.8rem;
+	}
+}

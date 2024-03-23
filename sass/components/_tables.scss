@@ -1,0 +1,32 @@
+table {
+    border-collapse: collapse;
+    border-radius: var(--rounded-corner);
+    box-shadow: var(--edge-highlight);
+    overflow: hidden;
+    table-layout: fixed;
+    width: 100%;
+
+    th {
+        font-weight: bold;
+    }
+
+    th,
+    td {
+        padding: 0.5rem 1rem;
+    }
+
+    tr {
+        &:nth-child(even) {
+            background-color: var(--fg-muted-1);
+        }
+
+        th {
+            background-color: var(--fg-muted-2);
+        }
+    }
+}
+
+td,
+th {
+    padding: 0;
+}

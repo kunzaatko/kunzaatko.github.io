@@ -1,0 +1,14 @@
+<footer id="site-footer">
+	{% if config.extra.footer.show_copyright %}
+	<p title="Last built at {{ now() | date(format='%F %R %Z') }}">&copy; {{ config.title }}, {{ now() |
+		date(format="%Y") }}</p>
+	{% endif %}
+
+	{% if config.extra.footer.show_source %} <!-- FIX: This footer is quite large... Should it be so? Should there be
+	a smaller gap between the two rows of the footer? <18-03-24> -->
+	<p>
+		<a class="source-link" href="{{ config.extra.source_url }}" title="Link to site source"><i
+				class="fa-solid fa-code"></i></a>
+	</p>
+	{% endif %}
+</footer>

@@ -1,3 +1,8 @@
+# TODO: https://stackoverflow.com/questions/45825927/how-to-hide-side-nav-bar-using-html-and-css
+# TODO: Add a shortcode for linking sites and linking page see `sass/_anchors.scss`  <21-03-24> 
+# TODO: Change the /resources/og_image.png to some my image <20-03-24> 
+# TODO: Change colors to https://github.com/Speyll/veqev <19-03-24> 
+# TODO: https://www.hostinger.com/tutorials/website-color-schemes <23-03-24> 
 base_url = "https://kunzaatko.github.io"
 
 title = "Random Sampler"
@@ -8,38 +13,92 @@ default_language = "en"
 
 output_dir = "public"
 compile_sass = true
+minify_html = true
 generate_feed = true
 
-# TODO: Should be set based on the categories that I want to write about <16-03-24> 
-# The taxonomies to be rendered for the site and their configuration of the default languages
-# Example:
-#     taxonomies = [
-#       {name = "tags", feed = true}, # each tag will have its own feed
-#       {name = "tags"}, # you can have taxonomies with the same name in multiple languages
-#       {name = "categories", paginate_by = 5},  # 5 items per page for a term
-#       {name = "authors"}, # Basic definition: no feed or pagination
-#     ]
-#
-taxonomies = []
+taxonomies = [
+  { name = "tags", feed = true },
+  { name = "categories", feed = true },
+  { name = "authors" },
+]
 
 build_search_index = true
 
 [markdown]
 highlight_code = true
-highlight_theme = "gruvbox-dark" # TODO: 
+highlight_theme = "gruvbox-dark" # NOTE: Seems to be pleasant for both dark and light themes  
 render_emoji = true
 smart_punctuation = true
+
+[slugify]
+paths = "on"
+taxonomies = "on"
+anchors = "on"
 
 [search]
 include_title = true
 include_description = true
-include_path = true
+include_path = false
 include_content = true
 
-# TODO: https://www.getzola.org/documentation/getting-started/configuration/ <16-03-24> 
+# TODO: Add translations https://www.getzola.org/documentation/getting-started/configuration/ <16-03-24> 
 [translations]
 
 [languages]
 
 
 [extra]
+date_format = "%d %B %Y"
+primary_color = "#da532c"
+
+static_favicon = true
+animated_favicon = false
+
+issues_url = "https://github.com/kunzaatko/kunzaatko.github.io/issues"
+source_url = "https://github.com/kunzaatko/kunzaatko.github.io"
+
+[extra.favicon]
+favicon_16x16 = "/icons/favicon-16x16.png"
+favicon_32x32 = "/icons/favicon-32x32.png"
+apple_touch_icon = "/icons/apple-touch-icon.png"
+safari_pinned_tab = "/icons/safari-pinned-tab.svg"
+webmanifest = "/icons/site.webmanifest"
+
+[extra.social]
+github = "kunzaatko"
+gitlab = "kunzaatko"
+stackoverflow = "13320979"
+email = "kunzmart@fjfi.cvut.cz"
+reddit = "kunzaatko"
+discord = "kunzaatko"
+# youtube = 
+# twitch = 
+# googleplay = 
+# orcid = 
+# google_scholar = 
+
+[extra.nav]
+show_feed = true
+
+links = [
+  { url = "$BASE_URL/blog", name = "Blog", icon = '<i class="fa-solid fa-blog"></i>' },
+  { url = "$BASE_URL/about", name = "About", icon = '<i class="fa-solid fa-address-card"></i>' },
+  { url = "$BASE_URL/tags", name = "Tags", icon = '<i class="fa-solid fa-tags"></i>' },
+  { url = "$BASE_URL/categories", name = "Categories", icon = '<i class="fa-solid fa-cubes"></i>' },
+]
+
+[extra.footer]
+# "© Title, YEAR" in the footer
+show_copyright = true
+# Link to website source
+show_source = true
+
+[extra.author]
+name = "Martin Kunz"
+# avatar = 
+
+[extra.comments]
+# TODO: Add comments via "giscus" as in "serene" <20-03-24> 
+
+[extra.analytics]
+google = "G-49264CD3DM"

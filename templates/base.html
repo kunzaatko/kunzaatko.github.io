@@ -1,0 +1,24 @@
+{% import 'macros.html' as macros %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% include "components/head.html" ignore missing -%}
+
+<body>
+	{% include "components/nav.html" ignore missing -%}
+	<div>
+		<div class="top">
+			<!-- NOTE: For the title part of the article or page -->
+			{% block top %}{%- endblock -%}
+		</div>
+		<main>
+			<!-- NOTE: For description, abstract, TOC, etc. -->
+			{% block custom %}{%- endblock -%}
+			<!-- NOTE: Main content of the page... Blog content etc. -->
+			{% block content %}{%- endblock -%}
+		</main>
+	</div>
+	{% include "components/footer.html" ignore missing -%}
+</body>
+
+</html>
