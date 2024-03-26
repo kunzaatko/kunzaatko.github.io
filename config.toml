@@ -1,8 +1,3 @@
-# TODO: https://stackoverflow.com/questions/45825927/how-to-hide-side-nav-bar-using-html-and-css
-# TODO: Add a shortcode for linking sites and linking page see `sass/_anchors.scss`  <21-03-24> 
-# TODO: Change the /resources/og_image.png to some my image <20-03-24> 
-# TODO: Change colors to https://github.com/Speyll/veqev <19-03-24> 
-# TODO: https://www.hostinger.com/tutorials/website-color-schemes <23-03-24> 
 base_url = "https://kunzaatko.github.io"
 
 title = "Random Sampler"
