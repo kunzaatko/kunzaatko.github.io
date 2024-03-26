@@ -5,8 +5,15 @@
 		<ul>
 			<li id="home">
 				<a href="{{ get_url(path='') }}">
-					<i class="fa-solid fa-home"></i>
-					{{ config.title }}</a>
+					<!-- <i class="fa-solid fa-home"></i> -->
+
+					<!-- TODO: Center the icon and add text size that is responsive to the font size <26-03-24> -->
+					<object type="image/svg+xml" data="{{ get_url(path='resources/favicon_dice.svg') }}" width="16px"
+						height="16px">
+						Your browser does not support SVG
+
+					</object> <span>{{ config.title }}</span>
+				</a>
 			</li>
 			{% for link in config.extra.nav.links %}
 			<li>
