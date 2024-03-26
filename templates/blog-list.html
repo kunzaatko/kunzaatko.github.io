@@ -8,17 +8,14 @@
 
 {% block content %}
 {{ section.content | safe }} <!-- NOTE:  Content in the file `content/blog/_index.md` -->
-<ul> <!-- FIX: This does not make sense here, but it makes the listings more concise? What is the cause? How to do it
-correctly? <21-03-24> -->
-  <!-- If you are using pagination, section.pages will be empty. You need to use the paginator object -->
-  {% if paginator %}
-  {% set pages = paginator.pages %}
-  {% else %}
-  {% set pages = section.pages %}
-  {% endif %}
+<!-- If you are using pagination, section.pages will be empty. You need to use the paginator object -->
+{% if paginator %}
+{% set pages = paginator.pages %}
+{% else %}
+{% set pages = section.pages %}
+{% endif %}
 
-  {% for page in pages %}
-  {{ macros::render_blog_page_box(page=page) }}
-  {% endfor %}
-</ul>
+{% for page in pages %}
+{{ macros::render_blog_page_box(page=page) }}
+{% endfor %}
 {% endblock content %}

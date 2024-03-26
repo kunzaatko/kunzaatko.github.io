@@ -1,18 +1,14 @@
  // TODO: Change the colors <21-03-24> 
 
- .blog-list hr:last-of-type {
-     display: none;
- }
-
  .blog-page-container {
      display: flex;
      background-color: lightcyan;
      flex-direction: column;
-     align-items: justify; // center horizontally
+     align-items: stretch; // strech across the whole blog listing box
      // gap: 1em;
      border-radius: 1rem; // TODO: Add to the variables
      box-shadow: var(--edge-highlight), 0px 12px 24px -16px rgba(0, 0, 0, 0.5);
-     // margin: 0;
+     margin: auto; // center the content
      padding: 1rem 1.5rem;
      margin-top: 1em;
      margin-bottom: 1em;
