@@ -22,3 +22,9 @@ TODOs
 - [ ] In the index page, there should be links to some useful tags. Something like "If you want to see some uncensored
 attempts at a real life problem that I encountered, see `(tag) uncensored`." etc.
 - [x] In-front of "nav home button", put the icon of the site instead of the "home" icon
+- [ ] Register on a some non-github free domain?! 
+    - https://nic.eu.org/
+    - https://github.com/is-a-dev/register (https://www.is-a.dev/)
+- [ ] Anchor preview windows
+    - For wikipedia, this can done using https://github.com/wikimedia/wikipedia-preview
+    - Style of preview https://stackoverflow.com/questions/67277296/how-to-make-page-preview-popup-like-wikipedia
