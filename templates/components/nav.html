@@ -23,7 +23,7 @@
 			{% endfor %}
 			{% if config.extra.nav.show_feed %}
 			<li id="feed">
-				<a href="{{ get_url(path='') }}/{{ config.feed_filename }}">
+				<a href="{{ get_url(path='') }}/{{ config.feed_filenames[0] }}">
 					<i class="fa-solid fa-rss"></i>
 					<span>Feed</span> <!-- TODO: Why is this here? <18-03-24> -->
 				</a>
