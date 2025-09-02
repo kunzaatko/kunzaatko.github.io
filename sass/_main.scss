@@ -87,7 +87,7 @@ dl {
 
 ol li::marker {
   /* TODO: Change this color to something normal <10-06-24> */
-  color: red;
+  color: var(--yellow-fg);
   font-weight: bold;
 }
 

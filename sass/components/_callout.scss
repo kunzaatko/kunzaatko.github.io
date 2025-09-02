@@ -1,0 +1,57 @@
+  .callout {
+    line-height: inherit;
+    margin: 1.25em 0;
+    border: 1.5px solid var(--primary-color);
+    border-radius: var(--callout-border-radius);
+    padding: 6px 12px;
+    display: flex;
+    gap: 12px;
+
+    .icon {
+      height: 1.75em;
+      display: flex;
+      align-items: center;
+    }
+
+    .content {
+      max-width: calc(100% - 32px);
+
+      p {
+        margin: 0;
+
+        +p {
+          margin: 0.2em 0 0.5em;
+        }
+      }
+    }
+
+    &.note {
+      color: var(--callout-note-color);
+      border-color: var(--callout-note-color);
+    }
+
+    &.important {
+      color: var(--callout-important-color);
+      border-color: var(--callout-important-color);
+    }
+
+    &.warning {
+      color: var(--callout-warning-color);
+      border-color: var(--callout-warning-color);
+    }
+
+    &.alert {
+      color: var(--callout-alert-color);
+      border-color: var(--callout-alert-color);
+    }
+
+    &.question {
+      color: var(--callout-question-color);
+      border-color: var(--callout-question-color);
+    }
+
+    &.tip {
+      color: var(--callout-tip-color);
+      border-color: var(--callout-tip-color);
+    }
+  }

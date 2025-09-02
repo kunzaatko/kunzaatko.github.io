@@ -20,6 +20,15 @@
 	--yellow-bg: rgba(156, 110, 3, 0.1);
 	--yellow-fg: rgb(156, 110, 3);
 
+	--callout-note-color: #5871a2;
+	--callout-important-color: #8062b0;
+	--callout-warning-color: #936e51;
+	--callout-alert-color: #bc5252;
+	--callout-question-color: #477389;
+	--callout-tip-color: #3c8460;
+
+	--callout-border-radius: 0px;
+
 	// VARIABLES
 	--active: 0.9;
 	--bg-color-d: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), var(--primary-color);

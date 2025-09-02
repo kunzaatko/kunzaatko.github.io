@@ -2,16 +2,26 @@
 
  .blog-page-container {
      display: flex;
-     background-color: lightcyan;
+     background-color: var(--fg-muted-2); // lightyellow;
      flex-direction: column;
      align-items: stretch; // strech across the whole blog listing box
      // gap: 1em;
      border-radius: 1rem; // TODO: Add to the variables
-     box-shadow: var(--edge-highlight), 0px 12px 24px -16px rgba(0, 0, 0, 0.5);
+     box-shadow: var(--edge-highlight), 12px 12px 24px -16px rgba(0, 0, 0, 0.5);
      margin: auto; // center the content
      padding: 1rem 1.5rem;
      margin-top: 1em;
      margin-bottom: 1em;
+
+     &:hover {
+        background-color: var(--fg-muted-1); // lightyellow;
+        box-shadow: var(--edge-highlight), 1.2*12px 1.2*12px 1.2*24px -16px rgba(0, 0, 0, 0.5);
+        transition: background .3s ease-in-out, color .3s ease-in-out;
+        transition-property: background, color;
+        transition-duration: 0s, 0.15s;
+        transition-timing-function: ease-in-out, ease-in-out;
+        transition-delay: 0s, 0s;
+     }
  }
 
  .blog-page-container header {
