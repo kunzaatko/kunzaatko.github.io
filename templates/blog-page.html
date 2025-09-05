@@ -2,7 +2,9 @@
 
 {% block top %}
 
-<header id="page-title">{{ page.title }}</header>
+<header id="page-title">
+	{{ page.title | safe }}
+</header>
 
 <div>
 	{{ macros::page_publish_metadata(page=page) }}
@@ -23,7 +25,7 @@
 
 {{ macros::render_page_statements(page=page) }}
 
-{% if page.description %}
+{% if page.description | safe %}
 
 {% if page.extra.toc %} <!-- TODO: Add an option, where there is no description given <17-03-24> -->
 <aside>
@@ -32,12 +34,12 @@
 		<ul>
 			{% for h1 in page.toc %}
 			<li>
-				<a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+				<a href="{{ h1.permalink | safe }}">{{ h1.title | safe }}</a>
 				{% if h1.children %}
 				<ul>
 					{% for h2 in h1.children %}
 					<li>
-						<a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+						<a href="{{ h2.permalink | safe }}">{{ h2.title | safe }}</a>
 					</li>
 					{% endfor %}
 				</ul>
@@ -63,13 +65,13 @@
 	{% if page.higher %}
 	<a class="post-nav-item post-nav-prev" href="{{ page.higher.permalink }}">
 		<div class="nav-arrow">← Previous</div>
-		<span class="post-title">{{ page.higher.title }}</span>
+		<span class="post-title">{{ page.higher.title | safe }}</span>
 	</a>
 	{% endif %}
 	{% if page.lower %}
 	<a class="post-nav-item post-nav-next" href="{{ page.lower.permalink }}">
 		<div class="nav-arrow">Next →</div>
-		<span class="post-title">{{ page.lower.title }}</span>
+		<span class="post-title">{{ page.lower.title | safe }}</span>
 	</a>
 	{% endif %}
 </nav>

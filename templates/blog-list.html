@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block top %}
-<header>{{ section.title }}</header>
+<header>{{ section.title | safe }}</header>
 <small> {{ section.pages | length }} posts in total </small>
 <p>{{ section.description | safe }}</p>
 {% endblock %}
