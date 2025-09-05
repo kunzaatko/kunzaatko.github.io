@@ -29,3 +29,5 @@ attempts at a real life problem that I encountered, see `(tag) uncensored`." etc
     - For wikipedia, this can done using https://github.com/wikimedia/wikipedia-preview
     - Style of preview https://stackoverflow.com/questions/67277296/how-to-make-page-preview-popup-like-wikipedia
 - [ ] add description shortcode: `<dl>` & `<dd>`
+- [ ] The callouts should have better colours and rounded corners?
+    - callouts similar to the ones here https://www.howtocodeit.com/
