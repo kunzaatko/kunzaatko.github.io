@@ -1,6 +1,6 @@
 +++
 title = "Tips for the Julia <code>startup.jl</code> file"
-date = 2025-09-01
+date = 2025-09-05
 
 description = """
 Some small glints and tips for the <code>startup.jl</code> that I find useful when using Julia interactively in the REPL.
