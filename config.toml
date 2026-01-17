@@ -7,28 +7,39 @@ description = "Personal blog of Martin Kunz" # TODO: Update... Appears in feeds 
 default_language = "en"
 
 output_dir = "public"
+
 compile_sass = true
 minify_html = true
-generate_feeds = true
 
+generate_feeds = true
+feed_filenames = ["rss.xml"]
 
 taxonomies = [
   { name = "tags", feed = true },
   { name = "categories", feed = true },
   { name = "authors" },
 ]
+taxonomy_root = "blog"
 
 build_search_index = true
+generate_sitemap = true
+generate_robots_txt = true
 
 [markdown]
-highlight_code = true
-highlight_theme = "gruvbox_w_jl_repl"
-extra_syntaxes_and_themes = [
-  "highlight/syntaxes/",
-  "highlight/themes/",
-] # NOTE: Folder for extra language highlight syntaxes and themes
 render_emoji = true
 smart_punctuation = true
+definition_list = true
+github_alerts = true
+
+# CSS class to add to external links (e.g. "external-link")
+# external_links_class = 
+
+[markdown.highlighting]
+light_theme = "gruvbox-dark-soft"
+dark_theme = "gruvbox-dark-soft"
+theme = "catppuccin-frappe"
+error_on_missing_language = true
+extra_grammars = ["highlight/syntaxes/julia-repl.json"]
 
 [slugify]
 paths = "on"
@@ -40,12 +51,6 @@ include_title = true
 include_description = true
 include_path = false
 include_content = true
-
-# TODO: Add translations https://www.getzola.org/documentation/getting-started/configuration/ <16-03-24> 
-[translations]
-
-[languages]
-
 
 [extra]
 date_format = "%d %B %Y"

@@ -49,7 +49,7 @@ For example, I have a `subtypetree` function which allows me to see all of the s
   decide on what interfaces I should use for my own implementations.
 
 It works like this
-```jl-repl 
+```julia-repl
 julia> subtypetree(Integer)
 Integer
   Bool
@@ -71,14 +71,13 @@ Integer
 
 <details>
 <summary>Definition of <code>subtypetree</code></summary>
-<pre class="language-julia" data-lang="julia" style="color:#fdf4c1aa;background-color:#282828"><code class="language-julia" data-lang="julia"><span style="color:#fa5c4b">function </span><span style="color:#8ec07c">subtypetree</span><span>(roottype, level=1, indent=2)
-</span><span>    level </span><span style="color:#fe8019">== </span><span style="color:#d3869b">1 </span><span style="color:#fe8019">&amp;&amp;</span><span> println(roottype)
-</span><span>    </span><span style="color:#fa5c4b">for</span><span> s </span><span style="color:#fa5c4b">in</span><span> subtypes(roottype)
-</span><span>        println(join(fill(</span><span style="color:#b8bb26">" "</span><span>, level </span><span style="color:#fe8019">*</span><span> indent)) </span><span style="color:#fe8019">*</span><span> string(s))
-</span><span>        subtypetree(s, level </span><span style="color:#fe8019">+ </span><span style="color:#d3869b">1</span><span>, indent)
-</span><span>    </span><span style="color:#fa5c4b">end
-</span><span style="color:#fa5c4b">end
-</span></code></pre>
+<pre class="giallo" style="color:#c6d0f5;background-color:#303446"><code data-lang="julia"><span class="giallo-l"><span style="color:#ca9ee6">function</span><span style="color:#8caaee;font-style:italic"> subtypetree</span><span>(roottype</span><span style="color:#949cbb">,</span><span> level</span><span style="color:#81c8be">=</span><span style="color:#ef9f76">1</span><span style="color:#949cbb">,</span><span> indent</span><span style="color:#81c8be">=</span><span style="color:#ef9f76">2</span><span>)</span></span>
+<span class="giallo-l"><span>    level </span><span style="color:#81c8be">==</span><span style="color:#ef9f76"> 1</span><span style="color:#81c8be"> &amp;&amp;</span><span style="color:#8caaee;font-style:italic"> println</span><span>(roottype)</span></span>
+<span class="giallo-l"><span style="color:#ca9ee6">    for</span><span> s </span><span style="color:#81c8be">in</span><span style="color:#8caaee;font-style:italic"> subtypes</span><span>(roottype)</span></span>
+<span class="giallo-l"><span style="color:#8caaee;font-style:italic">        println</span><span>(</span><span style="color:#8caaee;font-style:italic">join</span><span>(</span><span style="color:#8caaee;font-style:italic">fill</span><span>(</span><span style="color:#a6d189">" "</span><span style="color:#949cbb">,</span><span> level </span><span style="color:#81c8be">*</span><span> indent))</span><span style="color:#81c8be"> *</span><span style="color:#8caaee;font-style:italic"> string</span><span>(s))</span></span>
+<span class="giallo-l"><span style="color:#8caaee;font-style:italic">        subtypetree</span><span>(s</span><span style="color:#949cbb">,</span><span> level </span><span style="color:#81c8be">+</span><span style="color:#ef9f76"> 1</span><span style="color:#949cbb">,</span><span> indent)</span></span>
+<span class="giallo-l"><span style="color:#ca9ee6">    end</span></span>
+<span class="giallo-l"><span style="color:#ca9ee6">end</span></span></code></pre>
 </details>
 
 Also you might want to integrate some tools that you use in your system and use them instead of the defaults. 
