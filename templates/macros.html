@@ -1,217 +1,23 @@
-<!-- TODO: If there are more authors, they should be separated <21-03-24> -->
-<!-- TODO: Add links to the authors if possible <18-03-24> -->
-<!-- TODO: Add last modified <18-03-24> -->
-<!-- TODO: All authors should be listed and their avatars, if they are in the config. (Site config merged with the
-	page config) <18-03-24> -->
-{% macro page_publish_metadata(page) %}
-<div class="publish-metadata">
-  {%- if page.authors %}
-  {%- for author in page.authors %}
-  <span><i class="fa-solid fa-user"></i> {{ author }}</span>
-  {%- endfor %}
+{% macro month_name(num) %}
+    {%- if num == 1 %}Jan.
+    {%- elif num == 2 %}Feb.
+    {%- elif num == 3 %}Mar.
+    {%- elif num == 4 %}Apr.
+    {%- elif num == 5 %}May
+    {%- elif num == 6 %}June
+    {%- elif num == 7 %}July
+    {%- elif num == 8 %}Aug.
+    {%- elif num == 9 %}Sept.
+    {%- elif num == 10 %}Oct.
+    {%- elif num == 11 %}Nov.
+    {%- elif num == 12 %}Dec.
+    {%- else %}{{ throw(message="invalid month! " ~ num) }}
+    {%- endif %}
+{%- endmacro month_name %}
 
-  {%- if page.date %}
-  <span> • </span>
-  {%- endif %}
-  {%- elif config.author %}
-  <span><i class="fa-solid fa-user"></i> {{ config.author }}</span>
-  {%- if page.date %}
-  <span> • </span>
-  {%- endif %}
-  {%- endif %}
-  {%- if page.date %}
-  <i class="fa-solid fa-calendar-alt"></i><span> </span>
-  <time datetime="{{ page.date }}">{{ page.date | date(format='%B %d, %Y') }}</time>
-  {%- endif %}
-</div>
-{% endmacro %}
-
-
-{% macro page_content_metadata(page) %}
-<div class="content-metadata">
-  <i class="fa-solid fa-pencil-alt"></i> {{ page.word_count }} words
-  (≈ <i class="fa-solid fa-clock"></i> {{ page.reading_time }} min)
-</div>
-{% endmacro %}
-
-
-{% macro render_tags(tags, prefix) %}
-<div class="tags">
-  {%- if prefix %}
-  <i class="fa-solid fa-tags"></i>:
-  {%- endif %}
-  <ul class="tags">
-    {% for tag in tags %}
-    <li>
-      <a class="tag" href="{{ get_taxonomy_url(kind='tags', name=tag) }}">{{ tag }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
-{% endmacro %}
-
-{% macro render_categories(categories, prefix) %}
-<div class="categories">
-  {%- if prefix %}
-  <i class="fa-solid fa-cubes"></i>:
-  {%- endif %}
-  <ul class="categories">
-    {% for category in categories %}
-    <li>
-      <a class="category" href="{{ get_taxonomy_url(kind='categories', name=category) }}">{{ category }}</a>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
-{% endmacro %}
-
-{% macro render_page_statements(page) %}
-{% if page.extra.archive %}
-<div class="statement-container archive">
-  <strong class="big">⚠ Archived</strong>
-  {{ page.extra.archive | markdown | safe }}
-</div>
-{% endif %}
-
-{% if page.extra.trigger %}
-<div class="statement-container trigger">
-  <strong class="big">⚠ Trigger Warning</strong>
-  {{ page.extra.trigger | markdown | safe }}
-</div>
-{% endif %}
-
-{% if page.extra.disclaimer %}
-<div class="statement-container disclaimer">
-  <strong class="big">⚠ Disclaimer(s)</strong>
-  {{ page.extra.disclaimer | markdown | safe }}
-</div>
-{% endif %}
-{% endmacro %}
-
-{% macro render_blog_page_box(page) %}
-<div class="blog-page-container">
-  <article>
-    <header>
-      <a href='{{ page.permalink }}'>
-        {{ page.title | safe }}
-      </a>
-    </header>
-    <div class="metadata">
-      {{ macros::page_publish_metadata(page=page) }}
-      {{ macros::page_content_metadata(page=page) }}
-    </div>
-
-    <div class="content">
-      <!-- <p class="subtitle"> -->
-      {{ page.description | safe }}
-      <!-- {{ page.summary | safe }} -->
-      <!-- </p> -->
-    </div>
-    <div class="taxonomies">
-      {% if page.taxonomies.categories %}
-      {{ macros::render_categories(categories=page.taxonomies.categories, prefix=true) }}
-      {% endif %}
-      {% if page.taxonomies.tags %}
-      {{ macros::render_tags(tags=page.taxonomies.tags, prefix=true) }}
-      {% endif %}
-    </div>
-</div>
-</article>
-</div>
-{% endmacro %}
-
-{% macro social_links(social_config) %} <!-- TODO: The under-curls and under-lines in the link are not desirable the
-class social links should differently highlighted to while being hovered and not-focused <18-03-24> -->
-<div class="social-links">
-
-  {% if social_config.twitch %}
-  <a href="https://www.twitch.tv/{{ social_config.twitch }}" target="_blank">
-    <span title="Twitch">
-      <i class="fab fa-twitch fa-lg"></i>
-    </span>
-  </a>
-  {% endif %}
-
-  {% if social_config.reddit %}
-  <a href="https://www.reddit.com/user/{{ social_config.reddit }}" target="_blank">
-    <span title="Reddit">
-      <i class="fab fa-reddit fa-lg"></i>
-    </span>
-  </a>
-  {% endif %}
-
-  {% if social_config.discord %}
-  <a class="has-text-discord" href="https://discordapp.com/users/{{ social_config.discord }}" target="_blank">
-    <span title="Discord">
-      <i class="fa-brands fa-discord"></i>
-    </span>
-  </a>
-  {% endif %}
-
-  {% if social_config.github %}
-  <a class="has-text-github" href="https://github.com/{{ social_config.github }}" target="_blank">
-    <span title="GitHub">
-      <i class="fab fa-github fa-lg"></i>
-    </span>
-  </a>
-  {% endif %}
-
-  {% if social_config.gitlab %}
-  <a class="has-text-gitlab" href="https://gitlab.com/{{ social_config.gitlab }}" target="_blank">
-    <span title="GitLab">
-      <i class="fab fa-gitlab fa-lg"></i>
-    </span>
-  </a>
-  {% endif %}
-
-  {% if social_config.stackoverflow %}
-  <a class="has-text-stackoverflow" href="https://stackoverflow.com/users/{{ social_config.stackoverflow }}"
-    target="_blank">
-    <span title="Stack Overflow">
-      <i class="fab fa-stack-overflow fa-lg"></i>
-    </span>
-  </a>
-  {% endif %}
-
-  {% if social_config.google_scholar %}
-  <a class="has-text-googlescholar" href="https://scholar.google.com/citations?user={{ social_config.google_scholar }}"
-    target="_blank">
-    <span title="Google Scholar">
-      <i class="ai ai-google-scholar ai-lg"></i>
-    </span>
-  </a>
-  {% endif %}
-
-  {% if social_config.orcid %}
-  <a class="has-text-orcid" href="https://orcid.org/{{ social_config.orcid }}" target="_blank">
-    <span title="ORCiD">
-      <i class="fab fa-orcid fa-lg"></i>
-    </span>
-  </a>
-  {% endif %}
-
-  {% if social_config.email %}
-  <a class="has-text-black" href="mailto:{{ social_config.email }}" target="_blank">
-    <span title="Email">
-      <i class="far fa-envelope fa-lg"></i>
-    </span>
-  </a>
-  {% endif %}
-
-  {% if social_config.googleplay %}
-  <a href="https://play.google.com/store/apps/developer?id={{ social_config.googleplay }}&hl=en" target="_blank">
-    <span title="Google play">
-      <i class="fab fa-google-play fa-lg"></i>
-    </span>
-  </a>
-  {% endif %}
-
-  {% if social_config.youtube %}
-  <a class="has-text-youtube" href="https://www.youtube.com/c/{{ social_config.youtube }}" target="_blank">
-    <span title="YouTube">
-      <i class="fa-brands fa-youtube"></i>
-    </span>
-  </a>
-  {% endif %}
-</div>
-{% endmacro %}
+{% macro show_year(year, post_name="Posts") -%}
+      <tr>
+        <td class="bn"></td>
+        <td class="bn"><h3 class="f0-l f1-m f2-s mt4 mb0">{{ post_name }} in {{ year }}</h3></td>
+      </tr>
+{%- endmacro show_year %}

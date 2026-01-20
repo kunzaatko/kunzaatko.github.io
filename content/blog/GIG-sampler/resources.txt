@@ -1,0 +1,8 @@
+https://link.springer.com/article/10.1007/s11222-012-9367-z
+https://projecteuclid.org/eBooks/institute-of-mathematical-statistics-lecture-notes-monograph-series/a-festschrift-for-herman-rubin/toc/10.1214/lnms/1196285369
+https://mathoverflow.net/questions/252661/real-world-example-of-use-of-monte-carlo-method-for-high-dimensional-integrals
+http://cs.krisbeevers.com/mmr/10-montecarlo.pdf
+https://www.value-at-risk.net/breaking-the-curse-of-dimensionality/
+https://inst.eecs.berkeley.edu/~cs294-13/fa09/lectures/scribe-lecture4.pdf
+https://cs184.eecs.berkeley.edu/public/sp19/lectures/lec-12-integration/lec-12-integration.pdf
+https://statproofbook.github.io/?q=ratio+of+uniforms

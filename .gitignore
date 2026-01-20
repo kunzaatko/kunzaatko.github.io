@@ -1,1 +1,6 @@
 public/
+templates_old/
+sass_old/
+blog/
+about/
+blog.rust-lang.org/

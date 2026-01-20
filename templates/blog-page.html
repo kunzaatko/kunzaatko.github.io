@@ -1,103 +1,47 @@
-{% extends "base.html" %}
+{% import "macros.html" as macros -%}
+{% extends "layout.html" -%}
+{% block page -%}
+{% set num_comps = page.components | length -%}
+{% if num_comps < 4 %}{{ throw(message="Missing date in 'path' key, required format: 'YYYY/MM/DD/slug-of-your-choice'") }}{% endif -%}
+{% set year = page.components | nth(n=num_comps - 4) | int -%}
+{% set month = page.components | nth(n=num_comps - 3) | int -%}
+{% set day = page.components | nth(n=num_comps - 2) | int -%}
+<section id="{{ page.title | striptags }}" class="white">
+  <div class="w-100 mw-none ph3 mw9-m mw9-l center f3">
+    <header>
+            <h2>{{ page.title | safe }}</h2>
+            <!-- TODO: Here is the place where the highlight width is set if the text is wrapped in two lines. I should
+                    fix this by some kind of determination, where the wrap appears and by replacing the width with the
+                    acctual width after the wrap is determined. <20-01-26> -->
+      <div class="highlight mt2 mb3"></div>
+    </header>
 
-{% block top %}
+    <div class="ph2">
+    <div class="publish-date-author">{{ macros::month_name(num=month) }} {{ day }}, {{ year }} {% if page.authors  %}&middot; {{ page.authors | join(sep=", ") }} {% endif %}
+    {% if 'team' in page.extra %} on behalf of <a href="{{ page.extra.team_url | safe }}">{{ page.extra.team }}</a> {% endif %}
+    </div>
 
-<header id="page-title">
-	{{ page.title | safe }}
-</header>
-
-<div>
-	{{ macros::page_publish_metadata(page=page) }}
-</div>
-
-{%- if page.taxonomies %}
-{% if page.taxonomies.tags %}
-{{ macros::render_tags(tags=page.taxonomies.tags, prefix=false) }}
-{% endif %}
-{% if page.taxonomies.categories %}
-<span> • </span> {{ macros::render_categories(categories=page.taxonomies.categories, prefix=false) }}
-{%- endif %}
-{%- endif %}
-{% endblock %}
-
-{% block content %}
-<!-- TODO: This should be done by css class <18-03-24> -->
-
-{{ macros::render_page_statements(page=page) }}
-
-{% if page.description | safe %}
-
-{% if page.extra.toc %} <!-- TODO: Add an option, where there is no description given <17-03-24> -->
-<aside>
-	<h4>Table of Contents</h4>
-	<small>
-		<ul>
-			{% for h1 in page.toc %}
-			<li>
-				<a href="{{ h1.permalink | safe }}">{{ h1.title | safe }}</a>
-				{% if h1.children %}
-				<ul>
-					{% for h2 in h1.children %}
-					<li>
-						<a href="{{ h2.permalink | safe }}">{{ h2.title | safe }}</a>
-					</li>
-					{% endfor %}
-				</ul>
-				{% endif %}
-			</li>
-			{% endfor %}
-		</ul>
-	</small>
-</aside>
-{% endif %}
-
-<p class="description">
-	{{ page.description | safe }}
-</p>
-
-{% endif %}
-
-{{ page.content | safe }}
-
-{% if page.lower or page.higher %}
-<hr>
-<nav id="post-nav">
-	{% if page.higher %}
-	<a class="post-nav-item post-nav-prev" href="{{ page.higher.permalink }}">
-		<div class="nav-arrow">← Previous</div>
-		<span class="post-title">{{ page.higher.title | safe }}</span>
-	</a>
-	{% endif %}
-	{% if page.lower %}
-	<a class="post-nav-item post-nav-next" href="{{ page.lower.permalink }}">
-		<div class="nav-arrow">Next →</div>
-		<span class="post-title">{{ page.lower.title | safe }}</span>
-	</a>
-	{% endif %}
-</nav>
-{% endif %}
-
+    <div class="post">
+      {{ page.content | safe }}
+    </div>
+          </div>
 {% block comments %}
-<script src="https://giscus.app/client.js"
-        data-repo="kunzaatko/kunzaatko.github.io"
-        data-repo-id="R_kgDOLhO7Jg"
-        data-category="General"
-        data-category-id="DIC_kwDOLhO7Js4C1FnP"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="1"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
-</script>
+        <script src="https://giscus.app/client.js"
+                data-repo="kunzaatko/kunzaatko.github.io"
+                data-repo-id="R_kgDOLhO7Jg"
+                data-category="General"
+                data-category-id="DIC_kwDOLhO7Js4C1FnP"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="bottom"
+                data-theme="preferred_color_scheme"
+                data-lang="en"
+                crossorigin="anonymous"
+                async>
+        </script>
 {% endblock comments %}
-<!-- TODO: Here include comments <20-03-24> -->
-
-<p class="dialog-buttons">
-	<a class="inline-button" href="#top">Go to top</a>
-	<a class="inline-button colored" href="{{ config.extra.issues_url }}">File an issue</a>
-</p>
-{% endblock content %}
+  </div>
+</section>
+{%- endblock page %}

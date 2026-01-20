@@ -1,0 +1,64 @@
+{% macro footer() -%}
+<footer class="footer">
+  <div class="w-100 mw-none ph2 mw8-m mw9-l center f3">
+    <div class="row">
+      <div class="one-half column mt3 mt0-l">
+        <h4 class="tc">Social</h4>
+        <div class="flex flex-row flex-wrap">
+          <ul class="list w-100 flex flex-none flex-row flex-wrap justify-center items-center pv2 ph0 ">
+            <li class="tc pv2 ph2 ph2-ns flex-20-s">
+          <a  href="https://www.reddit.com/user/kunzaatko" target="_blank" rel="noopener">
+            <span title="Reddit">
+              <i class="fab fa-reddit fa-lg"></i>
+            </span>
+          </a>
+            </li>
+            <li class="tc pv2 ph2 ph2-ns flex-20-s">
+          <a href="https://discordapp.com/users/kunzaatko" target="_blank" rel="me">
+            <span title="Discord">
+              <i class="fa-brands fa-discord"></i>
+            </span>
+          </a>
+            </li>
+            <li class="tc pv2 ph2 ph2-ns flex-20-s">
+          <a href="https://github.com/kunzaatko" target="_blank" rel="noopener">
+            <span title="GitHub">
+              <i class="fab fa-github fa-lg"></i>
+            </span>
+          </a>
+            </li>
+            <li class="tc pv2 ph2 ph2-ns flex-20-s">
+          <a href="https://gitlab.com/kunzaatko" target="_blank" rel="noopener">
+            <span title="GitLab">
+              <i class="fab fa-gitlab fa-lg"></i>
+            </span>
+          </a>
+            </li>
+            <li class="tc pv2 ph2 ph2-ns flex-20-s">
+            <a href="mailto:martinkunz@email.cz" target="_blank">
+            <span title="Email">
+              <i class="far fa-envelope fa-lg"></i>
+            </span>
+          </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="one-half column mt3 mt0-l tc">
+        <h4>RSS</h4>
+        <ul>
+          <li><a href="{{ config.base_url | safe }}/feed.xml">Main Blog</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="attribution">
+      Maintained by {{ config.author }} at <a class="inline-button colored" href="{{ config.extra.source_url }}">
+              <i class="fab fa-github-alt"></i> GitHub</a>. See a typo or an issue?
+      <a class="inline-button colored" href="{{ config.extra.source_url }}{% if page %}/edit/trunk/content/{{
+        page.relative_path }}{% else %}/issues{% endif %}" target="_blank" rel="noopener"><i class="fa-solid
+          fa-bug"></i> Send a fix</a>!
+    </div>
+  </div>
+</footer>
+{% endmacro %}

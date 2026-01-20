@@ -1,3 +1,5 @@
+# https://www.getzola.org/documentation/getting-started/configuration/
+
 base_url = "https://kunzaatko.github.io"
 
 title = "Random Sampler"
@@ -10,14 +12,12 @@ output_dir = "public"
 
 compile_sass = true
 minify_html = true
-
 generate_feeds = true
 feed_filenames = ["rss.xml"]
 
 taxonomies = [
   { name = "tags", feed = true },
   { name = "categories", feed = true },
-  { name = "authors" },
 ]
 taxonomy_root = "blog"
 
@@ -34,9 +34,10 @@ github_alerts = true
 # CSS class to add to external links (e.g. "external-link")
 # external_links_class = 
 
+# TODO: Allow for light and dark themes similarly as it is in rust <19-01-26> 
 [markdown.highlighting]
-light_theme = "gruvbox-dark-soft"
-dark_theme = "gruvbox-dark-soft"
+# light_theme = "gruvbox-light-soft"
+# dark_theme = "gruvbox-dark-soft"
 theme = "catppuccin-frappe"
 error_on_missing_language = true
 extra_grammars = ["highlight/syntaxes/julia-repl.json"]
@@ -55,55 +56,16 @@ include_content = true
 [extra]
 date_format = "%d %B %Y"
 primary_color = "#da532c"
-
-static_favicon = true
-animated_favicon = false
-
-issues_url = "https://github.com/kunzaatko/kunzaatko.github.io/issues"
 source_url = "https://github.com/kunzaatko/kunzaatko.github.io"
 
-[extra.favicon]
-favicon_16x16 = "/icons/favicon-16x16.png"
-favicon_32x32 = "/icons/favicon-32x32.png"
-apple_touch_icon = "/icons/apple-touch-icon.png"
-safari_pinned_tab = "/icons/safari-pinned-tab.svg"
-webmanifest = "/icons/site.webmanifest"
-
-[extra.social]
-github = "kunzaatko"
-gitlab = "kunzaatko"
-stackoverflow = "13320979"
-email = "kunzmart@fjfi.cvut.cz"
-reddit = "kunzaatko"
-discord = "kunzaatko"
-# youtube = 
-# twitch = 
-# googleplay = 
-# orcid = 
-# google_scholar = 
-
 [extra.nav]
-show_feed = true
-
 links = [
   { url = "$BASE_URL/blog", name = "Blog", icon = '<i class="fa-solid fa-blog"></i>' },
   { url = "$BASE_URL/about", name = "About", icon = '<i class="fa-solid fa-address-card"></i>' },
-  { url = "$BASE_URL/tags", name = "Tags", icon = '<i class="fa-solid fa-tags"></i>' },
-  { url = "$BASE_URL/categories", name = "Categories", icon = '<i class="fa-solid fa-cubes"></i>' },
+  # { url = "$BASE_URL/tags", name = "Tags", icon = '<i class="fa-solid fa-tags"></i>' },
+  # { url = "$BASE_URL/categories", name = "Categories", icon = '<i class="fa-solid fa-cubes"></i>' },
 ]
-
-[extra.footer]
-# "© Title, YEAR" in the footer
-show_copyright = true
-# Link to website source
-show_source = true
 
 [extra.author]
 name = "Martin Kunz"
-# avatar = 
-
-[extra.comments]
-# TODO: Add comments via "giscus" as in "serene" <20-03-24> 
-
-[extra.analytics]
-google = "G-49264CD3DM"
+# avatar =

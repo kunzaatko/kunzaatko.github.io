@@ -1,0 +1,35 @@
+{% macro nav(section) -%}
+<nav class="flex flex-row justify-center justify-end-l items-center flex-wrap ph2 pl3-ns pr4-ns">
+  <div class="brand flex-auto w-100 w-auto-l self-start tc tl-l">
+    <a href="{{ config.base_url | safe }}{{ section.path | safe }}">
+      <img class="v-mid ml0-l rs-logo" alt="" src="{{ config.base_url | safe }}/images/favicon.svg">
+      <span class="dib ml1 ml0-l">{{ section.title }}</span>
+    </a>
+  </div>
+
+  <ul class="nav list w-100 w-auto-l flex flex-none flex-row flex-wrap justify-center justify-end-l items-center pv2 ph0 ph4-ns">
+
+    {% for link in config.extra.nav.links %}
+        <li class="tc pv2 ph2 ph4-ns flex-20-s nav-{{ link.name }}">
+					<a href="{{ link.url | safe | replace(from='$BASE_URL', to=get_url(path='')) | safe }}">{{ link.icon | safe }} {{ link.name }}</a>
+				</li>
+    {% endfor %}
+    <li id="feed">
+      <a href="{{ get_url(path='') }}/{{ config.feed_filenames[0] }}">
+        <i class="fa-solid fa-rss"></i>
+        <span>Feed</span>
+      </a>
+    </li>
+
+    <button class="theme-icon" onclick="dropdown();">
+      <i class="fa-solid fa-brush"></i>
+      <ul id="theme-choice">
+        <li class="theme-item" onclick="changeThemeTo('light');">Light</li>
+        <li class="theme-item" onclick="changeThemeTo('dark');">Dark</li>
+        <li class="theme-item" onclick="changeThemeTo('system');">System</li>
+      </ul>
+    </button>
+    <script src="{{ config.base_url | safe }}/scripts/theme-switch-post.js"></script>
+  </ul>
+</nav>
+{% endmacro %}
