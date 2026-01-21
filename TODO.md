@@ -47,13 +47,13 @@
   - [x] Add icons chrome (as in DeepThought `icons` directory)
   - [ ] The correct `nav` buttons should be determined based on the location within the site. Could be done in the
     `_index.md` headers for instance
-  - [ ] Book recommendation section in the about and link to their Goodreads reviews
+  - [ ] Book recommendation section in the about and link to their Goodreads or StoryBlocks reviews 
 
 - Block code theming:
+  - [x] Change the theming of code blocks
   - [ ] Ability to add links to the source of the codeblocks i.e. when I hover over the codeblock, the link appears to
     the source in the Github repo and over the lines. This possibly may have to be done in zola itself.
   - [ ] Ability to add a filename to the codeblock above the block
-  - [ ] Change the theming of code blocks
 
 # Inspiration
 - https://dharmx.is-a.dev/ (really it is the Dolt Hugo theme)

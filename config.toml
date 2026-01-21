@@ -36,9 +36,9 @@ github_alerts = true
 
 # TODO: Allow for light and dark themes similarly as it is in rust <19-01-26> 
 [markdown.highlighting]
-# light_theme = "gruvbox-light-soft"
-# dark_theme = "gruvbox-dark-soft"
-theme = "catppuccin-frappe"
+style = "class"
+light_theme = "github-light"
+dark_theme = "github-dark"
 error_on_missing_language = true
 extra_grammars = ["highlight/syntaxes/julia-repl.json"]
 
