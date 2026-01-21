@@ -54,7 +54,7 @@ include_path = false
 include_content = true
 
 [extra]
-date_format = "%d %B %Y"
+date_format = "%b. %d, %Y"
 primary_color = "#da532c"
 source_url = "https://github.com/kunzaatko/kunzaatko.github.io"
 

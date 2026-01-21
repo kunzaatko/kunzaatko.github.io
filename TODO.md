@@ -30,6 +30,7 @@
 - Blog pages:
   - [ ] The line under the title of the blog posts is too long if it contains markdown (there is a TODO note in the
     relevant section, which should be changed)
+  - [ ] Make the updated date appear smaller or in different location than the written date
 
 - Footer:
   - [x] Size of the logo in the nav bar is too large
@@ -48,6 +49,9 @@
   - [ ] The correct `nav` buttons should be determined based on the location within the site. Could be done in the
     `_index.md` headers for instance
   - [ ] Book recommendation section in the about and link to their Goodreads or StoryBlocks reviews 
+  - [ ] Use `date` function for the printing of the date in the blog post and have a global config variable `dateformat`
+    that will be used for this
+  - [ ] Add a link to the commit that the update and/or the creation happened
 
 - Block code theming:
   - [x] Change the theming of code blocks

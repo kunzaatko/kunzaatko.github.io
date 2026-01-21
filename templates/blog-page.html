@@ -17,7 +17,12 @@
     </header>
 
     <div class="ph2">
-    <div class="publish-date-author">{{ macros::month_name(num=month) }} {{ day }}, {{ year }} {% if page.authors  %}&middot; {{ page.authors | join(sep=", ") }} {% endif %}
+    <div class="publish-date-author">
+        {{ macros::month_name(num=month) }} {{ day }}, {{ year }} 
+        {% if "updated" in page.extra %} 
+                (updated {{ page.extra.updated | date(format=config.extra.date_format) }}) 
+        {% endif %}
+        {% if page.authors  %} &middot; {{ page.authors | join(sep=", ") }} {% endif %}
     {% if 'team' in page.extra %} on behalf of <a href="{{ page.extra.team_url | safe }}">{{ page.extra.team }}</a> {% endif %}
     </div>
 
