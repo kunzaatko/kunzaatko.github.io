@@ -1,8 +1,8 @@
 public/
 templates_old/
 sass_old/
-blog/
-about/
+blog/*
+about/*
 blog.rust-lang.org/
 static/giallo-dark.css
 static/giallo-light.css
