@@ -40,7 +40,7 @@
 - Comments:
   - [x] Comments for the blog posts
   - [x] Comments section is too wide
-  - [ ] Comments do not change theme with theme change
+  - [x] Comments do not change theme with theme change
 
 - Site structure:
   - [x] Change the directory structure to contain blog directory in content to allow for about, CV etc. pages
@@ -54,6 +54,9 @@
   - [ ] Ability to add links to the source of the codeblocks i.e. when I hover over the codeblock, the link appears to
     the source in the Github repo and over the lines. This possibly may have to be done in zola itself.
   - [ ] Ability to add a filename to the codeblock above the block
+  - [ ] When including line-numbers in the code blocks they are not nicely styled and aligned
+  - [ ] The title of the codeblock does not show
+  - [ ] Codeblocks that are collapsible 
 
 # Inspiration
 - https://dharmx.is-a.dev/ (really it is the Dolt Hugo theme)
@@ -69,3 +72,4 @@
   - List the blog pages under year written in the blog listing
 - https://github.com/Speyll/veqev | https://www.hostinger.com/tutorials/website-color-schemes <23-03-24> 
   - Nice colours for a selection of the secondary colours
+- https://www.zelicko.dev/about/

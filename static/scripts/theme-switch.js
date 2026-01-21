@@ -1,9 +1,21 @@
 "use strict";
 
+// Set Theme giscus theme
+function setGiscusTheme(theme) {
+    var iframe = document.querySelector('.giscus-frame');
+
+    if (iframe) {
+    var url = new URL(iframe.src);
+    url.searchParams.set('theme', theme);
+    iframe.src = url.toString();
+    }
+}
+
 // val: "light" | "dark"
 function renderTheme(val) {
     document.documentElement.setAttribute("data-theme", val);
-    document.getElementById("syntax-theme").href = `/giallo-${val}.css`
+    document.getElementById("syntax-theme").href = `/giallo-${val}.css`;
+    setGiscusTheme((val == "dark") ? "dark" : "light");
 }
 
 function changeThemeTo(val) {
@@ -11,13 +23,13 @@ function changeThemeTo(val) {
         setThemeToSystemPref();
         // delete explicit theme pref from browser storage
         if (storageAvailable("localStorage")) {
-            localStorage.removeItem("blog-rust-lang-org-theme");
+            localStorage.removeItem("random-sampler-theme");
         }
     } else {
         renderTheme(val);
         // save theme prefs in the browser
         if (storageAvailable("localStorage")) {
-            localStorage.setItem("blog-rust-lang-org-theme", val);
+            localStorage.setItem("random-sampler-theme", val);
         }
     }
     // the theme dropdown will close itself when returning to the dropdown() caller
@@ -69,7 +81,7 @@ function setThemeToSystemPref() {
 // Check for saved user preference on load, else check and save user agent prefs
 let savedTheme = null;
 if (storageAvailable("localStorage")) {
-    savedTheme = localStorage.getItem("blog-rust-lang-org-theme");
+    savedTheme = localStorage.getItem("random-sampler-theme");
 }
 if (savedTheme) {
     renderTheme(savedTheme);
