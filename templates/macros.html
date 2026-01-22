@@ -1,25 +1,16 @@
-{% macro month_name(num) %}
-    {%- if num == 1 %}Jan.
-    {%- elif num == 2 %}Feb.
-    {%- elif num == 3 %}Mar.
-    {%- elif num == 4 %}Apr.
-    {%- elif num == 5 %}May
-    {%- elif num == 6 %}June
-    {%- elif num == 7 %}July
-    {%- elif num == 8 %}Aug.
-    {%- elif num == 9 %}Sept.
-    {%- elif num == 10 %}Oct.
-    {%- elif num == 11 %}Nov.
-    {%- elif num == 12 %}Dec.
-    {%- else %}{{ throw(message="invalid month! " ~ num) }}
-    {%- endif %}
-{%- endmacro month_name %}
+{% macro show_blog_date(date) -%}
+    <td class="tr o-60 pr4 pr5-l bn">{{ date | date(format=config.extra.date.format.month_day) | replace(from=" ", to="&nbsp;") | safe }}</td>  
+{%- endmacro show_blog_date %}
 
-{% macro show_year(year, post_name="Posts") -%}
-      <tr>
-        <td class="bn"></td>
-        <td class="bn"><h3 class="f0-l f1-m f2-s mt4 mb0">{{ post_name }} in {{ year }}</h3></td>
-      </tr>
+{% macro show_year(year=false, date=false, post_name="Posts") -%}
+  {% if not year %}
+    {% if not date %} {{ throw(message="date or year is required in the `show_year` macro") }} {% endif %}
+    {% set year = date | date(format="%Y") | int %}
+  {% endif %}
+  <tr>
+    <td class="bn"></td>
+    <td class="bn"><h3 class="f0-l f1-m f2-s mt4 mb0">{{ post_name }} in {{ year }}</h3></td> 
+  </tr>
 {%- endmacro show_year %}
 
 <!--vim: set shiftwidth=2: -->

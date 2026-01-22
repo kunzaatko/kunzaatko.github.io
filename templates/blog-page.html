@@ -1,52 +1,51 @@
 {% import "macros.html" as macros -%}
 {% extends "layout.html" -%}
 {% block page -%}
-{% set num_comps = page.components | length -%}
-{% if num_comps < 4 %}{{ throw(message="Missing date in 'path' key, required format: 'YYYY/MM/DD/slug-of-your-choice'") }}{% endif -%}
-{% set year = page.components | nth(n=num_comps - 4) | int -%}
-{% set month = page.components | nth(n=num_comps - 3) | int -%}
-{% set day = page.components | nth(n=num_comps - 2) | int -%}
 <section id="{{ page.title | striptags }}" class="white">
   <div class="w-100 mw-none ph3 mw9-m mw9-l center f3">
     <header>
-            <h2>{{ page.title | safe }}</h2>
-            <!-- TODO: Here is the place where the highlight width is set if the text is wrapped in two lines. I should
-                    fix this by some kind of determination, where the wrap appears and by replacing the width with the
-                    acctual width after the wrap is determined. <20-01-26> -->
+      <h2>{{ page.title | safe }}</h2>
+      <!-- TODO: Here is the place where the highlight width is set if the text is wrapped in two lines. I should
+              fix this by some kind of determination, where the wrap appears and by replacing the width with the
+              acctual width after the wrap is determined. <20-01-26> -->
       <div class="highlight mt2 mb3"></div>
     </header>
 
-    <div class="ph2">
-    <div class="publish-date-author">
-        {{ macros::month_name(num=month) }} {{ day }}, {{ year }} 
-        {% if "updated" in page.extra %} 
-                (updated {{ page.extra.updated | date(format=config.extra.date_format) }}) 
+    <div class="ph2"> <!-- For the comments to be a little bit wider -->
+      <div class="publish-date-author">
+        {{ page.date | date(format=config.extra.date.format.full) }}
+        {%- if "updated" in page.extra %}
+          (updated {{ page.extra.updated | date(format=config.extra.date.format.full) }}) 
         {% endif %}
-        {% if page.authors  %} &middot; {{ page.authors | join(sep=", ") }} {% endif %}
-    {% if 'team' in page.extra %} on behalf of <a href="{{ page.extra.team_url | safe }}">{{ page.extra.team }}</a> {% endif %}
-    </div>
+        {%- if page.authors -%}
+          &middot; {{ page.authors | join(sep=", ") }}
+        {% endif %}
+        {%- if 'team' in page.extra -%}
+         on behalf of <a href="{{ page.extra.team_url | safe }}">{{ page.extra.team }}</a> 
+        {% endif %}
+      </div>
 
-    <div class="post">
-      {{ page.content | safe }}
+      <div class="post">
+        {{ page.content | safe }}
+      </div>
     </div>
-          </div>
-{% block comments %}
-        <script id="giscus" src="https://giscus.app/client.js"
-                data-repo="kunzaatko/kunzaatko.github.io"
-                data-repo-id="R_kgDOLhO7Jg"
-                data-category="General"
-                data-category-id="DIC_kwDOLhO7Js4C1FnP"
-                data-mapping="pathname"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="1"
-                data-input-position="bottom"
-                data-theme="preferred_color_scheme"
-                data-lang="en"
-                crossorigin="anonymous"
-                async>
-        </script>
-{% endblock comments %}
+    {% block comments %}
+      <script id="giscus" src="https://giscus.app/client.js"
+        data-repo="kunzaatko/kunzaatko.github.io"
+        data-repo-id="R_kgDOLhO7Jg"
+        data-category="General"
+        data-category-id="DIC_kwDOLhO7Js4C1FnP"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+      </script>
+    {% endblock comments %}
   </div>
 </section>
 {%- endblock page %}

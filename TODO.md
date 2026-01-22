@@ -46,12 +46,13 @@
 - Site structure:
   - [x] Change the directory structure to contain blog directory in content to allow for about, CV etc. pages
   - [x] Add icons chrome (as in DeepThought `icons` directory)
+  - [x] Use `date` function for the printing of the date in the blog post and have a global config variable `dateformat`
+    that will be used for this
   - [ ] The correct `nav` buttons should be determined based on the location within the site. Could be done in the
     `_index.md` headers for instance
   - [ ] Book recommendation section in the about and link to their Goodreads or StoryBlocks reviews 
-  - [ ] Use `date` function for the printing of the date in the blog post and have a global config variable `dateformat`
-    that will be used for this
   - [ ] Add a link to the commit that the update and/or the creation happened
+  - [ ] Fix the feed template and adjust it to the `date` function use
 
 - Block code theming:
   - [x] Change the theming of code blocks

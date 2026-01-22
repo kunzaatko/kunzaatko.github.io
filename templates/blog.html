@@ -7,53 +7,42 @@
       <p>{{ section.extra.index_html | safe }}</p>
     </div>
   </div>    
-  {% if 'see_also' in section.extra %}
+  {% if 'see_also' in section.extra -%}
   <div class="container flex flex-column flex-row-l justify-between-l">
     <div class="mw8-l">
       <p>
-      <b>See also:</b>
-      {% for see_also in section.extra.see_also -%}
-      {% if loop.index0 != 0 %},{% endif %}
-        <a href="{{ config.base_url | safe }}{{ see_also.path | safe }}">{{ see_also.text }}</a>
-      {%- endfor -%}
+        <b>See also:</b>
+        {% for see_also in section.extra.see_also -%}
+        {% if loop.index0 != 0 %},{% endif %}
+          <a href="{{ config.base_url | safe }}{{ see_also.path | safe }}">{{ see_also.text }}</a>
+        {%- endfor -%}
       </p>
     </div>
   </div>
-  {% endif %}
+  {%- endif %}
 </header>
 
 <section id="posts" class="posts">
    <div class="w-100 mw-none ph3 mw8-m mw9-l center f3">
-
     <table class="post-list collapse w-100 f2-l f2-m f3-s">
     {%- set rev_pages = section.pages | reverse %}
     {%- for page in rev_pages %}
-      {%- set num_comps = page.components | length %}
-      {%- if num_comps < 4 %}{{ throw(message="Missing date in 'path' key, required format: 'YYYY/MM/DD/slug-of-your-choice'") }}{% endif %}
-      {%- set year = page.components | nth(n=num_comps - 4) | int %}
-      {%- set month = page.components | nth(n=num_comps - 3) | int %}
-      {%- set day = page.components | nth(n=num_comps - 2) | int %}
-
       {%- if loop.index0 == 0 %}
-      {{ macros::show_year(year=year) }}
+        {{ macros::show_year(date=page.date) }}
       {%- else %}
+        {%- set year = page.date | date(format="%Y") %}
         {%- set prev_idx = loop.index0 - 1 %}
-        {%- set prev_year = rev_pages[prev_idx].components | nth(n=num_comps - 4) | int %}
+        {%- set prev_year = rev_pages[prev_idx].date | date(format="%Y") %}
         {%- if prev_year != year %}
-      {{ macros::show_year(year=year) }}
+          {{ macros::show_year(date=page.date) }}
         {%- endif %}
       {%- endif %}
-      {% if page.show_year %}<tr>
-        <td class="bn"></td>
-        <td class="bn"><h3 class="f0-l f1-m f2-s mt4 mb0">Posts in {{ year }}</h3></td>
-      </tr>{% endif %}
       <tr>
-        <td class="tr o-60 pr4 pr5-l bn">{{ macros::month_name(num=month) }}&nbsp;{{ day }}</td>
+        {{ macros::show_blog_date(date=page.date) }}
         <td class="bn"><a href="{{ config.base_url | safe }}{{ page.path | safe }}">{{ page.title | safe }}</a></td>
       </tr>
     {%- endfor %}
     </table>
-
   </div>
 </section>
 {%- endblock page %}
