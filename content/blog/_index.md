@@ -10,7 +10,7 @@ generate_feeds = true
 index_title = "Blog | Random Sampler"
 index_html = """
 This is the <b>Random Sampler Blog</b>. \
-I, <a href="https://github.com/kunzaatko" target="_blank" rel="noopener"><i>@kunzaatko</i></a> \
-use it whenever I encounter something that piques my curiosity and would like to spill it into the world.
+I,&nbsp;<a href="https://github.com/kunzaatko" target="_blank" rel="noopener"><i>@kunzaatko</i></a> \
+use it whenever&nbsp;I encounter something that piques my curiosity and would like to spill it into the world.
 """
 +++
