@@ -1,6 +1,6 @@
 # TODOs
 
-- [-] [Hide the nav when reading](https://stackoverflow.com/questions/45825927/how-to-hide-side-nav-bar-using-html-and-css)
+- [-] [Hide the `nav` when reading](https://stackoverflow.com/questions/45825927/how-to-hide-side-nav-bar-using-html-and-css)
    - Here it is achieved: https://dharmx.is-a.dev/
 - [-] Add a shortcode for linking sites and linking page see `sass/_anchors.scss`
 - [x] Change the /resources/og_image.png to some my image
@@ -53,6 +53,8 @@
   - [ ] Book recommendation section in the about and link to their Goodreads or StoryBlocks reviews 
   - [ ] Add a link to the commit that the update and/or the creation happened
   - [ ] Fix the feed template and adjust it to the `date` function use
+  - [ ] Fix: Changing to `feed.xml` with template not working because it takes paths that should not be in the feed.
+    Research the feed section in the zola documentation.
 
 - Block code theming:
   - [x] Change the theming of code blocks
@@ -62,6 +64,10 @@
   - [ ] When including line-numbers in the code blocks they are not nicely styled and aligned
   - [ ] The title of the codeblock does not show
   - [ ] Codeblocks that are collapsible 
+
+- Theme and Style
+ - [ ] Try add a similar highlighter under the title of the site "The Random Sampler" that expands on load to the ones
+   that are in the blog post titles
 
 # Inspiration
 - https://dharmx.is-a.dev/ (really it is the Dolt Hugo theme)
