@@ -13,12 +13,6 @@
       <a href="{{ link.url | safe | replace(from='$BASE_URL', to=get_url(path='')) | safe }}">{{ link.icon | safe }} {{ link.name }}</a>
     </li>
     {% endfor %}
-    <li class="tc pv2 ph2 ph3-ns flex-20-s" id="feed">
-      <a href="{{ get_url(path='') }}/{{ config.feed_filenames[0] }}">
-        <i class="fa-solid fa-rss"></i>
-        <span>Feed</span>
-      </a>
-    </li>
     <button class="theme-icon" onclick="dropdown();">
       <i class="fa-solid fa-brush"></i>
       <ul id="theme-choice">
