@@ -55,6 +55,8 @@
   - [ ] Fix the feed template and adjust it to the `date` function use
   - [ ] Fix: Changing to `feed.xml` with template not working because it takes paths that should not be in the feed.
     Research the feed section in the zola documentation.
+  - [ ] Move Font Awesome icons to the `fonts/` static directory.
+  - [ ] Determine the path based on the date in the page itself?
 
 - Block code theming:
   - [x] Change the theming of code blocks
@@ -64,10 +66,13 @@
   - [ ] When including line-numbers in the code blocks they are not nicely styled and aligned
   - [ ] The title of the codeblock does not show
   - [ ] Codeblocks that are collapsible 
+    - Define a macro for this? Collapsible NOTEs, WARNINGs, etc. and code blocks 
+  - [ ] Define a macro for terminal output
 
 - Theme and Style
  - [ ] Try add a similar highlighter under the title of the site "The Random Sampler" that expands on load to the ones
    that are in the blog post titles
+ - [ ] Change Julia in codeblocks to JuliaMono font (should be an easy fix within the SCSS)
 
 # Inspiration
 - https://dharmx.is-a.dev/ (really it is the Dolt Hugo theme)
