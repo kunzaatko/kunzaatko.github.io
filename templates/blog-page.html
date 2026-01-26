@@ -1,7 +1,7 @@
 {% import "macros.html" as macros -%}
 {% extends "layout.html" -%}
 {% block page -%}
-<section id="{{ page.title | striptags }}" class="white">
+<article id="{{ page.title | striptags }}" class="white">
   <div class="w-100 mw-none ph3 mw9-m mw9-l center f3">
     <header>
       <h2>{{ page.title | safe }}</h2>
@@ -47,7 +47,7 @@
       </script>
     {% endblock comments %}
   </div>
-</section>
+</article>
 {%- endblock page %}
 
 <!--vim: set shiftwidth=2: -->
