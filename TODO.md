@@ -48,6 +48,7 @@
   - [x] Add icons chrome (as in DeepThought `icons` directory)
   - [x] Use `date` function for the printing of the date in the blog post and have a global config variable `dateformat`
     that will be used for this
+  - [x] Move Font Awesome icons to the `fonts/` static directory.
   - [ ] The correct `nav` buttons should be determined based on the location within the site. Could be done in the
     `_index.md` headers for instance
   - [ ] Book recommendation section in the about and link to their Goodreads or StoryBlocks reviews 
@@ -55,7 +56,6 @@
   - [ ] Fix the feed template and adjust it to the `date` function use
   - [ ] Fix: Changing to `feed.xml` with template not working because it takes paths that should not be in the feed.
     Research the feed section in the zola documentation.
-  - [ ] Move Font Awesome icons to the `fonts/` static directory.
   - [ ] Determine the path based on the date in the page itself?
 
 - Block code theming:
