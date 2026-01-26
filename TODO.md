@@ -4,7 +4,7 @@
    - Here it is achieved: https://dharmx.is-a.dev/
 - [-] Add a shortcode for linking sites and linking page see `sass/_anchors.scss`
 - [x] Change the /resources/og_image.png to some my image
-- [-] Change colors to https://github.com/Speyll/veqev
+- [-] Change colours to https://github.com/Speyll/veqev
 - [-] https://www.hostinger.com/tutorials/website-color-schemes
 - [-] In the index page, there should be links to some useful tags. Something like "If you want to see some uncensored
   attempts at a real life problem that I encountered, see `(tag) uncensored`." etc.
