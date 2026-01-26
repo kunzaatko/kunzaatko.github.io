@@ -8,19 +8,17 @@
   </div>
 
   <ul class="nav list w-100 w-auto-l flex flex-none flex-row flex-wrap justify-center justify-end-l items-center pv2 ph0 ph4-ns">
-
     {% for link in config.extra.nav.links %}
-        <li class="tc pv2 ph2 ph4-ns flex-20-s nav-{{ link.name }}">
-					<a href="{{ link.url | safe | replace(from='$BASE_URL', to=get_url(path='')) | safe }}">{{ link.icon | safe }} {{ link.name }}</a>
-				</li>
+    <li class="tc pv2 ph2 ph3-ns flex-20-s nav-{{ link.name | lower }}">
+      <a href="{{ link.url | safe | replace(from='$BASE_URL', to=get_url(path='')) | safe }}">{{ link.icon | safe }} {{ link.name }}</a>
+    </li>
     {% endfor %}
-    <li id="feed">
+    <li class="tc pv2 ph2 ph3-ns flex-20-s" id="feed">
       <a href="{{ get_url(path='') }}/{{ config.feed_filenames[0] }}">
         <i class="fa-solid fa-rss"></i>
         <span>Feed</span>
       </a>
     </li>
-
     <button class="theme-icon" onclick="dropdown();">
       <i class="fa-solid fa-brush"></i>
       <ul id="theme-choice">
