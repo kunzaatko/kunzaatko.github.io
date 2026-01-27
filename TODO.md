@@ -41,41 +41,56 @@
 - Comments:
   - [x] Comments for the blog posts
   - [x] Comments section is too wide
-  - [x] Comments do not change theme with theme change
+    - [x] Comments do not change theme with theme change
+    - [ ] Add an option to quote some text from the article in the comments after highlight
 
-- Site structure:
-  - [x] Change the directory structure to contain blog directory in content to allow for about, CV etc. pages
-  - [x] Add icons chrome (as in DeepThought `icons` directory)
-  - [x] Use `date` function for the printing of the date in the blog post and have a global config variable `dateformat`
-    that will be used for this
-  - [x] Move Font Awesome icons to the `fonts/` static directory.
-  - [ ] The correct `nav` buttons should be determined based on the location within the site. Could be done in the
-    `_index.md` headers for instance
-  - [ ] Book recommendation section in the about and link to their Goodreads or StoryBlocks reviews 
-  - [ ] Add a link to the commit that the update and/or the creation happened
-  - [ ] Fix the feed template and adjust it to the `date` function use
-  - [ ] Fix: Changing to `feed.xml` with template not working because it takes paths that should not be in the feed.
-    Research the feed section in the zola documentation.
-  - [ ] Determine the path based on the date in the page itself?
+  - Site structure:
+    - [x] Change the directory structure to contain blog directory in content to allow for about, CV etc. pages
+    - [x] Add icons chrome (as in DeepThought `icons` directory)
+    - [x] Use `date` function for the printing of the date in the blog post and have a global config variable `dateformat`
+      that will be used for this
+    - [x] Move Font Awesome icons to the `fonts/` static directory.
+    - [ ] The correct `nav` buttons should be determined based on the location within the site. Could be done in the
+      `_index.md` headers for instance
+    - [ ] Book recommendation section in the about and link to their Goodreads or StoryBlocks reviews 
+    - [ ] Add a link to the commit that the update and/or the creation happened
+    - [ ] Fix the feed template and adjust it to the `date` function use
+    - [ ] Fix: Changing to `feed.xml` with template not working because it takes paths that should not be in the feed.
+      Research the feed section in the zola documentation.
+    - [ ] Determine the path based on the date in the page itself?
+    - [ ] Add a small centred copyright text and licensing notice into the footer at the very bottom
+    - [ ] Add an image an and introduction to me to the lander page
 
-- Block code theming:
-  - [x] Change the theming of code blocks
-  - [ ] Ability to add links to the source of the codeblocks i.e. when I hover over the codeblock, the link appears to
-    the source in the Github repo and over the lines. This possibly may have to be done in zola itself.
-  - [ ] Ability to add a filename to the codeblock above the block
-  - [ ] When including line-numbers in the code blocks they are not nicely styled and aligned
-  - [ ] The title of the codeblock does not show
-  - [ ] Codeblocks that are collapsible 
-    - Define a macro for this? Collapsible NOTEs, WARNINGs, etc. and code blocks 
-  - [ ] Define a macro for terminal output
+  - Block code theming:
+    - [x] Change the theming of code blocks
+    - [ ] Ability to add links to the source of the codeblocks i.e. when I hover over the codeblock, the link appears to
+      the source in the Github repo and over the lines. This possibly may have to be done in zola itself.
+    - [ ] Ability to add a filename to the codeblock above the block
+    - [ ] When including line-numbers in the code blocks they are not nicely styled and aligned
+    - [ ] The title of the codeblock does not show
+    - [ ] Codeblocks that are collapsible 
+      - Define a macro for this? Collapsible NOTEs, WARNINGs, etc. and code blocks 
+    - [ ] Define a macro for terminal output
 
-- Theme and Style
- - [ ] Try add a similar highlighter under the title of the site "The Random Sampler" that expands on load to the ones
-   that are in the blog post titles
- - [ ] Change Julia in codeblocks to JuliaMono font (should be an easy fix within the SCSS)
+  - Theme and Style
+  - [x] Change to more colourful catppuccin theme
+  - [ ] Try add a similar highlighter under the title of the site "The Random Sampler" that expands on load to the ones
+    that are in the blog post titles
+  - [ ] Change Julia in codeblocks to JuliaMono font (should be an easy fix within the SCSS)
+  - [ ] Theme the same as in the catppuccin website
+  - [ ] The logo and the brand text should be smaller and the font less intensive when the blog page is loaded. It draws
+    attention otherwise away from the content, which should be the main focus.
+  - [ ] Add the cat footer to separate from the main content and the footer and think about something similar with the
+    header and navigation sections
+  - [ ] There is too much space between code and the continuation of the article for some reason. I think that this is
+    some padding after the `.z-code` `pre` selector. Investigate this.
+  - [ ] The text in the brand should have some "border" to "pop". Similarly to how the logo handles stuff?
+  - [ ] Links and button in navigation should be more responsive. Something like underlining with the accent colour. It
+    is implemented in the Catppuccin website. Perhaps the rainbow colours.
+  - [ ] Use more SASS variables and only convert to CSS at the very end
 
 # Inspiration
-- https://dharmx.is-a.dev/ (really it is the Dolt Hugo theme)
+  - https://dharmx.is-a.dev/ (really it is the Dolt Hugo theme)
   - table of contents that is active on the side and shows what section the reader is on when scrolling
   - Side navigation
   - Hiding TOC

@@ -1,0 +1,110 @@
+@use "./catppuccin" as *;
+@use "sass:string";
+@use "sass:map";
+@use "sass:color";
+
+$theme-data: (
+  "latte": (
+    "scheme": light,
+    "body": black,
+    "inverted-text": var(--base),
+    "selection-color": var(--blue),
+  ),
+  "macchiato": (
+    "scheme": dark,
+    "body": white,
+    "inverted-text": var(--crust),
+    "selection-color": var(--mauve),
+  ),
+  "frappe": (
+    "scheme": dark,
+    "body": white,
+    "inverted-text": var(--crust),
+    "selection-color": var(--mauve),
+  ),
+  "mocha": (
+    "scheme": dark,
+    "body": white,
+    "inverted-text": var(--crust),
+    "selection-color": var(--mauve),
+  ),
+);
+
+/* prettier-ignore */
+@mixin theme-base($flavor) {
+  @each $color, $value in map.get($palette, $flavor) {
+    --#{$color}: #{$value};
+    --inverted-#{$color}: #{color.invert($value)};
+  }
+  // Theme variable overrides
+  --inverted-text: #{map.get(map.get($theme-data, $flavor), "inverted-text")};
+  --selection-color: #{map.get(map.get($theme-data, $flavor), "selection-color")};
+}
+
+@mixin theme-semantic() {
+  --accent-highlight: var(--maroon);
+
+  --code-color: var(--body);
+  --code-bg-color: var(--crust);
+  --code-border-color: var(--overlay0);
+
+  /* --body-color: var(--subtext1); */
+  --body-color: var(--body);
+  --body-bg-color: var(--base);
+  --body-fg-color: var(--base);
+
+  --div-brand-a-color: var(--subtext1);
+
+  --posts-fg-color: var(--inverted-text);
+  --posts-bg-color: var(--inverted-base);
+  --posts-code-color: var(--inverted-text);
+  --posts-code-bg-color: var(--inverted-crust);
+  --posts-code-border-color: var(--inverted-overlay0);
+
+  --blockquote-bg-color: var(--mantle);
+  --blockquote-left-border-color: var(--teal);
+
+  --light-link: var(--subtext0);
+
+  /* FIX: Theming needs some polishing. I have the states mixed up. It should be commented when done. <27-01-26> */
+  --theme-icon: var(--subtext1);
+  --theme-popup-border: var(--overlay1);
+  --theme-popup-bg: var(--mantle);
+  --theme-hover: var(--text);
+  --theme-choice-color: var(--subtext1);
+
+  --publish-date-author: var(--subtext0);
+
+  --footer-bg-color: var(--mantle);
+  --footer-fg-color: var(--subtext1);
+}
+
+@mixin theme($flavor) {
+  @include theme-base($flavor);
+  @include theme-semantic();
+}
+
+:where([data-theme="system"]) {
+  color-scheme: light dark;
+  @include theme("latte");
+  @media (prefers-color-scheme: dark) {
+    @include theme("mocha");
+  }
+}
+
+:where([data-theme="light"]) {
+  color-scheme: light;
+  @include theme("latte");
+}
+
+:where([data-theme="dark"]) {
+  color-scheme: dark;
+  @include theme("mocha");
+}
+
+@each $flavor, $data in $theme-data {
+  :where([data-theme="#{$flavor}"]) {
+    color-scheme: map.get($data, "scheme");
+    @include theme($flavor);
+  }
+}
