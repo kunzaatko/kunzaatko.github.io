@@ -60,6 +60,9 @@
     - [ ] Determine the path based on the date in the page itself?
     - [ ] Add a small centred copyright text and licensing notice into the footer at the very bottom
     - [ ] Add an image an and introduction to me to the lander page
+    - [ ] Add the search. If the search index does not have good features, a good tool is
+      [`ninja-keys`](https://github.com/ssleptsov/ninja-keys). The search could be generated with a template file to add
+      all of the items.
 
   - Block code theming:
     - [x] Change the theming of code blocks
@@ -88,6 +91,7 @@
   - [ ] Links and button in navigation should be more responsive. Something like underlining with the accent colour. It
     is implemented in the Catppuccin website. Perhaps the rainbow colours.
   - [ ] Use more SASS variables and only convert to CSS at the very end
+  - [ ] Transition between light and dark theme. This is nicely done at https://speyllsite.pages.dev/
 
 # Inspiration
   - https://dharmx.is-a.dev/ (really it is the Dolt Hugo theme)
@@ -104,3 +108,5 @@
 - https://github.com/Speyll/veqev | https://www.hostinger.com/tutorials/website-color-schemes <23-03-24> 
   - Nice colours for a selection of the secondary colours
 - https://www.zelicko.dev/about/
+- https://langestefan.github.io/
+  - <kbd>Ctrl</kbd>+<kbd>K</kbd> to open the shortcuts and navigation is super cool
