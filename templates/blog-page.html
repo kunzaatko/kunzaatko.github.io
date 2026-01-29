@@ -17,7 +17,7 @@
         {%- if "updated" in page.extra %}
           (updated {{ page.extra.updated | date(format=config.extra.date.format.full) }}) 
         {% endif %}
-        {%- if page.authors -%}
+        {%- if page.authors %}
           &middot; {{ page.authors | join(sep=", ") }}
         {% endif %}
         {%- if 'team' in page.extra -%}
