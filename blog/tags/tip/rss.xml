@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>Random Sampler - tip</title>
+      <link>https://kunzaatko.github.io</link>
+      <description>Personal blog of Martin Kunz</description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://kunzaatko.github.io/blog/tags/tip/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Fri, 05 Sep 2025 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Tips for the Julia &lt;code&gt;startup.jl&lt;&#x2F;code&gt; file</title>
+          <pubDate>Fri, 05 Sep 2025 00:00:00 +0000</pubDate>
+          <author>Martin Kunz</author>
+          <link>https://kunzaatko.github.io/2025/09/05/julia-less-glint/</link>
+          <guid>https://kunzaatko.github.io/2025/09/05/julia-less-glint/</guid>
+          <description xml:base="https://kunzaatko.github.io/2025/09/05/julia-less-glint/">&lt;p&gt;I have lately spent some time switching between an editor, paper and the Julia REPL, which made me realize how much more
+pleasant I have made this workflow for myself by stuff I have in the startup file.&lt;&#x2F;p&gt;
+&lt;blockquote class=&quot;markdown-alert-note&quot;&gt;
+&lt;p&gt;&lt;strong&gt;What is the &lt;code&gt;startup.jl&lt;&#x2F;code&gt; file?!&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+For those who are not accustomed with the concept of the startup file in Julia, briefly, it is a script that is run once
+you enter the REPL.
+It is stored at &lt;code&gt;$JULIA_DEPOT_PATH&#x2F;config&#x2F;startup.jl&lt;&#x2F;code&gt; or if the &lt;code&gt;JULIA_DEPOT_PATH&lt;&#x2F;code&gt; environment variable is not set, the
+default on &lt;em&gt;GNU&#x2F;UNIX&lt;&#x2F;em&gt; is &lt;code&gt;$HOME&#x2F;.julia&#x2F;&lt;&#x2F;code&gt;.
+Here you can find more about the
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.julialang.org&#x2F;en&#x2F;v1&#x2F;manual&#x2F;command-line-interface&#x2F;#Startup-file&quot;&gt;&lt;code&gt;startup.jl&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; file.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Some of the changes that I made may be useful to you as well!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;loading-packages-for-interactive-use-only&quot;&gt;Loading Packages for Interactive Use Only&lt;&#x2F;h1&gt;
+&lt;p&gt;Most people use it for loading packages that they use often enough that they value of having the package functionality
+available at startup is higher than the price of the REPL startuptime.
+The library packages that meet this criterium for me are
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;juliaci.github.io&#x2F;BenchmarkTools.jl&#x2F;stable&#x2F;&quot;&gt;&lt;code&gt;BenchmarkTools&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; and &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;docs.makie.org&#x2F;dev&#x2F;&quot;&gt;&lt;code&gt;Makie&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;.
+It is always a good idea when loading packages for interactive use to include them conditionally only when the session
+is &lt;em&gt;interactive&lt;&#x2F;em&gt; with&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;julia&quot; data-name=&quot;~&#x2F;.julia&#x2F;config&#x2F;startup.jl&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;try&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;    if&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt; isinteractive&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;        using&lt;&#x2F;span&gt;&lt;span&gt; Makie&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;    end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;catch&lt;&#x2F;span&gt;&lt;span&gt; e&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-support&quot;&gt;    @warn&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt;Error initializing Makie&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt; exception &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span&gt;e&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt; catch_backtrace&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;blockquote class=&quot;markdown-alert-note&quot;&gt;
+&lt;p&gt;The &lt;code&gt;try&#x2F;catch&lt;&#x2F;code&gt; control sequence is here, since I switch between different versions of Julia and I do not always make
+sure that everything is installed.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;This way you are only paying the expense when you actually need it and not when running scripts or generating
+documentation for example.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;other-useful-packages&quot;&gt;Other Useful Packages&lt;&#x2F;h1&gt;
+&lt;p&gt;Non-library packages that may improve your experience with the Julia REPL when using it interactively which I also are
+important to me are these…&lt;&#x2F;p&gt;
+&lt;dl&gt;
+&lt;dt&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;timholy.github.io&#x2F;Revise.jl&#x2F;stable&#x2F;&quot;&gt;&lt;code&gt;Revise&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;&lt;&#x2F;dt&gt;
+&lt;dd&gt;It has become more of a must have in the community and is also recommended by the official Julia documentation. It
+manges the changes that you make in your loaded packages and allows the REPL environment to reflect changes that you
+make in real time.&lt;&#x2F;dd&gt;
+&lt;dt&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;kristofferc.github.io&#x2F;OhMyREPL.jl&#x2F;latest&#x2F;&quot;&gt;&lt;code&gt;OhMyRepl&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;&lt;&#x2F;dt&gt;
+&lt;dd&gt;Features include syntax highlighting in your REPL, markdown syntax for documentation and fuzzy searching with
+&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;fzf&quot;&gt;&lt;code&gt;fzf&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; of the REPL history.&lt;&#x2F;dd&gt;
+&lt;dt&gt;&lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;caleb-allen.github.io&#x2F;VimBindings.jl&#x2F;&quot;&gt;&lt;code&gt;VimBindings&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;&lt;&#x2F;dt&gt;
+&lt;dd&gt;Enables editing the command line with modal Vim bindings.&lt;&#x2F;dd&gt;
+&lt;&#x2F;dl&gt;
+&lt;h1 id=&quot;additional-functions&quot;&gt;Additional Functions&lt;&#x2F;h1&gt;
+&lt;p&gt;It is also useful to define some functions that you can use for exploration and debugging purposes.
+For example, I have a &lt;code&gt;subtypetree&lt;&#x2F;code&gt; function which allows me to see all of the subtypes of a particular abstract type to
+decide on what interfaces I should use for my own implementations.&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;julia-repl&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;julia&amp;gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt; subtypetree&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;Integer&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Integer&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  Bool&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  GeometryBasics&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;.&lt;&#x2F;span&gt;&lt;span&gt;OffsetInteger&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  Signed&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    BigInt&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    Int128&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    Int16&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    Int32&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    Int64&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    Int8&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;  Unsigned&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    UInt128&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    UInt16&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    UInt32&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    UInt64&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    UInt8&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;&lt;details&gt;
+&lt;summary&gt;Definition of &lt;code&gt;subtypetree&lt;&#x2F;code&gt;&lt;&#x2F;summary&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;julia&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;function&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name&quot;&gt; subtypetree&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;roottype&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; level&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; indent&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant&quot;&gt;2&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    level &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;==&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant&quot;&gt; 1&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt; &amp;amp;&amp;amp;&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt; println&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;roottype&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;    for&lt;&#x2F;span&gt;&lt;span&gt; s &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;in&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt; subtypes&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;roottype&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-support&quot;&gt;        println&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt;join&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt;fill&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt;&quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt; &quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; level &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt; indent&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt; *&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt; string&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;s&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-support&quot;&gt;        subtypetree&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;s&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; level &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;+&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant&quot;&gt; 1&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; indent&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;    end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;details&gt;
+&lt;h1 id=&quot;change-the-pages-for-less&quot;&gt;Change the Pages for &lt;code&gt;@less&lt;&#x2F;code&gt;&lt;&#x2F;h1&gt;
+&lt;blockquote class=&quot;markdown-alert-note&quot;&gt;
+&lt;p&gt;&lt;strong&gt;What is this &lt;code&gt;@less&lt;&#x2F;code&gt; that you are talking about?&lt;&#x2F;strong&gt;&lt;br &#x2F;&gt;
+If you do not use &lt;code&gt;@less&lt;&#x2F;code&gt; and &lt;code&gt;@edit&lt;&#x2F;code&gt;, you should definitely check them out!
+These are tools that allow you to inspect the source code of functions implemented in some package (or defined earlier
+within the REPL).
+Usually when I have the editor and the REPL open and any of my calls to library functions have unexpected outputs,
+I would like to inspect what is happening in its implementation.
+You could surely use &lt;code&gt;GoToImplemention&lt;&#x2F;code&gt; from the language server if you are within the editor context, but I find
+&lt;code&gt;@less&lt;&#x2F;code&gt; and &lt;code&gt;@edit&lt;&#x2F;code&gt; to be useful in the REPL as well.
+Most importantly, I use this when I want to look up how some function is implemented in the Julia &lt;code&gt;Base&lt;&#x2F;code&gt; or in some
+external package, because I want to implement something similar myself.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Also you might want to integrate some tools that you use on your system and use them instead of the defaults.
+One nice enhancement that I have in this category is using &lt;code&gt;bat&lt;&#x2F;code&gt; instead of &lt;code&gt;less&lt;&#x2F;code&gt; as the pager for in the
+&lt;code&gt;InteractiveUtils.less&lt;&#x2F;code&gt; function.
+You can achieve this by including the code&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;julia&quot; data-name=&quot;startup.jl&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;try&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;    if&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt; isinteractive&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;        using&lt;&#x2F;span&gt;&lt;span&gt; InteractiveUtils&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;        function&lt;&#x2F;span&gt;&lt;span&gt; InteractiveUtils&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-entity z-name&quot;&gt;less&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;file&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;::&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt;AbstractString&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span&gt; line&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;::&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt;Integer&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-support&quot;&gt;            run&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt;`&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt;bat --paging=always --line-range &lt;&#x2F;span&gt;&lt;span class=&quot;z-variable&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable&quot;&gt;line&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt;: &lt;&#x2F;span&gt;&lt;span class=&quot;z-variable&quot;&gt;$file&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt;`&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-constant&quot;&gt;            nothing&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;        end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;    end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;catch&lt;&#x2F;span&gt;&lt;span&gt; e&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-support&quot;&gt;    @warn&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt;Error initializing InteractiveUtils&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt; exception &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword&quot;&gt;=&lt;&#x2F;span&gt;&lt;span&gt; (&lt;&#x2F;span&gt;&lt;span&gt;e&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt; catch_backtrace&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;in your &lt;code&gt;startup.jl&lt;&#x2F;code&gt; file.
+This allows me to switch context between reading code that is run and running the code while staying in the REPL using
+&lt;code&gt;@less&lt;&#x2F;code&gt; instead of &lt;code&gt;@edit&lt;&#x2F;code&gt; which opens the code in the terminal.
+It gives you syntax highlighting of the output Julia source of the function that you are inspecting.&lt;&#x2F;p&gt;
+&lt;p&gt;Imagine that you want to see how the &lt;code&gt;split&lt;&#x2F;code&gt; function is implemented from &lt;code&gt;Base&lt;&#x2F;code&gt;.
+Perhaps you want to see if there is an iterator with the same behaviour and suspect that it would be present in the
+implementation.
+For this reason, you call&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;&lt;code data-lang=&quot;julia-repl&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span class=&quot;z-keyword&quot;&gt;julia&amp;gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt; @less&lt;&#x2F;span&gt;&lt;span class=&quot;z-support&quot;&gt; split&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt;a,b&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;,&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt; &amp;quot;&lt;&#x2F;span&gt;&lt;span class=&quot;z-string&quot;&gt;,&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-string&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;From the default &lt;code&gt;InteractiveUtils.less&lt;&#x2F;code&gt; definition that uses the &lt;code&gt;less&lt;&#x2F;code&gt; (or the &lt;code&gt;$PAGER&lt;&#x2F;code&gt; environment variable) command
+to page the output you can expect something similar to this:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;
+&lt;code data-lang=&quot;plain&quot; style=&#x27;background-color:#24292E; color:#E1E4E8;&#x27;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;function split(str::T, splitter;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;               limit::Integer=0, keepempty::Bool=true) where {T&amp;lt;:AbstractString}&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    collect(eachsplit(str, splitter; limit, keepempty))&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;end&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;# a bit oddball, but standard behavior in Perl, Ruby &amp;amp; Python:&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;
+&lt;&#x2F;pre&gt;
+&lt;p&gt;It has the correct output but it is not very pleasant to read.
+You can imagine that you are analysing the implementation of a larger function… This would be quite a pain.&lt;&#x2F;p&gt;
+&lt;p&gt;If you change the &lt;code&gt;InterativeUtils.less&lt;&#x2F;code&gt; function definition to use &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;sharkdp&#x2F;bat&quot;&gt;&lt;code&gt;bat&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; as described
+above, you can expect something like this:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;giallo z-code&quot;&gt;
+&lt;code style=&quot;background-color:#24292E; color:#E1E4E8;&quot;&gt;File: &lt;b&gt;&#x2F;home&#x2F;kunzaatko&#x2F;.julia&#x2F;juliaup&#x2F;julia-1.12.3+0.x64.linux.gnu&#x2F;share&#x2F;julia&#x2F;base&#x2F;strings&#x2F;util.jl&lt;&#x2F;b&gt;
+&lt;span style=&#x27;color:#cba6f7&#x27;&gt;function&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#cdd6f4&#x27;&gt; &lt;&#x2F;span&gt;&lt;span style=&#x27;color:#89b4fa&#x27;&gt;split&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#9399b2&#x27;&gt;(&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#eba0ac&#x27;&gt;str&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#94e2d5&#x27;&gt;::&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#f9e2af&#x27;&gt;T&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#9399b2&#x27;&gt;,&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#eba0ac&#x27;&gt; splitter&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#9399b2&#x27;&gt;;&lt;&#x2F;span&gt;
+&lt;span style=&#x27;color:#eba0ac&#x27;&gt;               limit&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#94e2d5&#x27;&gt;::&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#f9e2af&#x27;&gt;Integer&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#94e2d5&#x27;&gt;=&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#fab387&#x27;&gt;0&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#9399b2&#x27;&gt;,&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#eba0ac&#x27;&gt; keepempty&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#94e2d5&#x27;&gt;::&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#f9e2af&#x27;&gt;Bool&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#94e2d5&#x27;&gt;=&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#fab387&#x27;&gt;true&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#9399b2&#x27;&gt;)&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#cdd6f4&#x27;&gt; &lt;&#x2F;span&gt;&lt;span style=&#x27;color:#cba6f7&#x27;&gt;where&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#cdd6f4&#x27;&gt; &lt;&#x2F;span&gt;&lt;span style=&#x27;color:#9399b2&#x27;&gt;{&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#cdd6f4&#x27;&gt;T&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#94e2d5&#x27;&gt;&amp;lt;:&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#f9e2af&#x27;&gt;AbstractString&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#cdd6f4&#x27;&gt;}&lt;&#x2F;span&gt;
+&lt;span style=&#x27;color:#cdd6f4&#x27;&gt;    collect&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#9399b2&#x27;&gt;(&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#cdd6f4&#x27;&gt;eachsplit&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#9399b2&#x27;&gt;(&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#cdd6f4&#x27;&gt;str, splitter; limit, keepempty&lt;&#x2F;span&gt;&lt;span style=&#x27;color:#9399b2&#x27;&gt;))&lt;&#x2F;span&gt;
+&lt;span style=&#x27;color:#cba6f7&#x27;&gt;end&lt;&#x2F;span&gt;
+
+&lt;span style=&#x27;color:#9399b2&#x27;&gt;# a bit oddball, but standard behavior in Perl, Ruby &amp;amp; Python:&lt;&#x2F;span&gt;
+&lt;&#x2F;code&gt;
+&lt;&#x2F;pre&gt;
+&lt;p&gt;which is way nicer to read…&lt;&#x2F;p&gt;
+&lt;p&gt;I hope you enjoyed this non-exhaustive view into the contents of my &lt;code&gt;startup.jl&lt;&#x2F;code&gt; and that you perhaps found something
+useful for your own that could make the beautiful experience of writing Julia code a little less frustrating…&lt;&#x2F;p&gt;
+</description>
+      </item>
+    </channel>
+</rss>
